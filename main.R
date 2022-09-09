@@ -1,0 +1,60 @@
+## Welcome!
+
+## This is your project's main script file and together with
+## manuscript.Rmd it provides and entry point for you and other people
+## coming to the project. The code in this file should give an outline
+## of the different steps conducted in your study, from importing data
+## to producing results.
+
+## This file should be relatively short, and most of the heavy
+## lifting should be done by specialised functions. These functions
+## live in the folder functions/ and you create a new function using
+## create_function().
+
+## Feel free to remove this introductory text as you get started.
+
+## Source all functions (if you tick the box "Source on save" in
+## RStudio functions will be automatically sourced when you save
+## them). They all need to be sourced however when you compile your
+## manuscript file or run this file as a job, as that happens in a
+## clean R session.
+noacsr::source_all_functions()
+library(tidyverse)
+library(tableone)
+
+## Import data
+headerproperties <- read.csv("headerproperties.csv")
+titcodata <- read.csv("titcodata.csv")
+
+#ladda vektorerna med kvantitativa och kvalitativa datan
+load("quantitativecolumnname.rdata")
+load("qualitativecolumnname.rdata")
+
+## Whatever you do next, maybe clean data?
+#definiera dataseten
+licu=filter(titcodata, licu >0.5)
+nolicu=filter(titcodata, licu <0.5)
+
+#välj kvant kolumnerna
+quantitativeLicu <- licu[, which((names(licu) %in% quantitativecolumnname)==TRUE)]
+quantitativeNolicu <- nolicu[, which((names(nolicu) %in% quantitativecolumnname)==TRUE)]
+
+#gör stat analysen
+quantitatestatlicu=CreateTableOne(data = quantitativeLicu,includeNA=FALSE)
+quantitatestatnolicu=CreateTableOne(data = quantitativeNolicu,includeNA=FALSE)
+
+#gör t.test för alla kvant kolumner
+columncount=length(quantitativecolumnname) #hur många kolumner ska vi rulla
+pvalues<- data.frame(matrix(ncol = 1, nrow = columncount))
+tvalues<- data.frame(matrix(ncol = 1, nrow = columncount))
+for (a in 1:columncount) { 
+  c=t.test(quantitativeLicu[,a],quantitativeNolicu[,a],na.action=na.exclude)
+  pval=c[["p.value"]]
+  tval=c[["statistic"]][["t"]]
+  pvalues[a,1]=pval
+  tvalues[a,1]=tval
+  
+}
+
+df_t <- data.table::transpose(quantitativecolumnname)
+statresult<-data.frame(df_t,pvalues,tvalues) #jag vet inte hur jag får headers att stå p och t-värde, men det blir en tabell
