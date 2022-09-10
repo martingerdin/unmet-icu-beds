@@ -1,0 +1,261 @@
+---
+title: "Quantifying unmet ICU beds in tertiary hospitals in urban India using Prospective Score Matching "
+output: html_document
+author: "Maria Eriksson"
+bibliography: bibliography.bib
+csl: vancouver.csl
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<!-- This is an R Markdown document. Markdown is a simple formatting
+syntax for authoring HTML, PDF, and MS Word documents. For more
+details on using R Markdown see http://rmarkdown.rstudio.com -->
+
+<!-- This is a comment and will not be present in the compiled
+document. Try "knitting" this document by clicking the knit button up
+to the left, or by running `rmarkdown::render("manuscript.Rmd")` in
+the console and you should only see headings -->
+
+<!-- Structure and most comments are from the Strengthening the
+reporting of observational studies in epidemiology (STROBE) statement,
+see https://www.strobe-statement.org/. For more explanations see the
+paper Strengthening the Reporting of Observational Studies in
+Epidemiology (STROBE):explanation and elaboration.  -->
+
+<!-- Indicate the study’s design with a commonly used term in the
+title, for example: "Associations between resuscitation interventions
+and opportunities for improvement in adult trauma patients: A cohort
+study" -->
+
+Abstract
+========
+
+<!-- Provide in the abstract an informative and balanced summary of
+what was done and what was found. Not more than 300 words. -->
+
+Background
+----------
+
+Methods
+-------
+
+Results
+-------
+
+Conclusion
+----------
+
+Introduction
+============
+
+<!-- Explain the scientific background and rationale for the
+investigation being reported. End by stating the aim or specific
+objectives, including any prespecified hypotheses. The introduction
+should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
+6-8 lines long. Support every statement with a citation -->
+Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay.
+
+In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources.@tqip
+
+The existing TQIP often originate in high-income countries, and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC). This study aims to make an TQIP assessment in an Indian context and fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. if there is indeed a shortage of ICU beds in Indian hospitals, further quantify the scope of that shortage. If this analysis indeed indicate a shortage, it can be used to motivate entending ICU resources and reduce preventable trauma morbidity and mortality. 
+
+
+Methods 
+=======
+
+Study design
+------------
+
+<!-- Present key elements of study design -->
+
+Setting
+-------
+
+<!-- Describe the setting, locations, and relevant dates, including
+periods of recruitment, exposure, follow-up, and data collection -->
+
+Participants
+------------
+
+<!-- Cohort study: Give the eligibility criteria, and the sources and
+methods of selection of participants. Describe methods of
+follow-up. For matched studies, give matching criteria and number of
+exposed and unexposed -->
+
+<!-- Case-control study: Give the eligibility criteria, and the
+sources and + methods of case ascertainment and control
+selection. Give the rationale for the choice of cases and
+controls. For matched studies, give matching criteria and the number
+of controls per case -->
+
+<!-- Cross-sectional study: Give the eligibility criteria, and the
+sources and methods of selection of participants -->
+
+Variables and data sources/measurements
+---------------------------------------
+
+<!-- Clearly define all outcomes, exposures, predictors, potential
+confounders, and effect modifiers. Give diagnostic criteria, if
+applicable. For each variable of interest, give sources of data and
+details of methods of assessment (measurement). Describe comparability
+of assessment methods if there is more than one group -->
+
+Bias 
+----
+
+<!-- Describe any efforts to address potential sources of bias -->
+
+Study size 
+----------
+
+<!-- Explain how the study size was arrived at -->
+
+Quantitative variables
+----------------------
+
+<!-- Explain how quantitative variables were handled in the
+analyses. If applicable, describe which groupings were chosen and why
+-->
+
+Statistical methods
+-------------------
+
+<!-- 
+
+(a) Describe all statistical methods, including those used to control
+for confounding
+
+(b) Describe any methods used to examine subgroups and interactions
+
+(c) Explain how missing data were addressed 
+
+(d) 
+
+Cohort study: If applicable, explain how loss to follow-up was addressed 
+
+Case-control study:If applicable, explain how matching of cases and
+controls was addressed
+
+Cross-sectional study: If applicable, describe analytical methods
+taking account of sampling strategy
+
+(e) Describe any sensitivity analyses
+-->
+
+Results
+=======
+
+<!-- 
+
+Participants
+------------
+
+(a) Report numbers of individuals at each stage of study—eg numbers
+potentially eligible, examined for eligibility, confirmed eligible,
+included in the study, completing follow-up, and analysed
+
+(b) Give reasons for non-participation at each stage
+
+(c) Consider use of a flow diagram
+
+Descriptive data
+----------------
+
+(a) Give characteristics of study participants (eg demographic,
+clinical, social) and information on exposures and potential
+confounders
+
+(b) Indicate number of participants with missing data for each
+variable of interest
+
+(c) Cohort study — Summarise follow-up time (eg, average and total
+amount)
+
+Outcome data
+------------
+
+Cohort study — Report numbers of outcome events or summary measures
+over time
+
+Case-control study — Report numbers in each exposure category, or
+summary measures of exposure
+
+Cross-sectional study — Report numbers of outcome events or summary
+measures
+
+Main results
+------------
+
+(a) Give unadjusted estimates and, if applicable, confounder-adjusted
+estimates and their precision (eg, 95% confidence interval). Make
+clear which confounders were adjusted for and why they were included
+
+(b) Report category boundaries when continuous variables were
+categorized
+
+(c) If relevant, consider translating estimates of relative risk into
+absolute risk for a meaningful time period
+
+Other analyses 
+--------------
+
+Report other analyses done—eg analyses of subgroups and interactions,
+and sensitivity analyses 
+-->
+
+You can include code in this document like this:
+
+```{r main, echo=FALSE}
+source("main.R") ## This "imports" the main script file of your project and run any code in it
+```
+
+You can also embed plots:
+
+```{r plot, echo=FALSE}
+plot(pressure)
+```
+
+You can also mix text and code, so called inline code, like this: `r 2+5`.
+
+Discussion
+==========
+
+<!--
+
+Key results
+-----------
+Summarise key results with reference to study objectives
+
+Limitations
+-----------
+
+Discuss limitations of the study, taking into account sources of
+potential bias or imprecision.  Discuss both direction and magnitude
+of any potential bias
+
+Interpretation
+--------------
+
+Give a cautious overall interpretation of results considering
+objectives, limitations, multiplicity of analyses, results from
+similar studies, and other relevant evidence
+
+Generalisability
+----------------
+
+Discuss the generalisability (external validity) of the study results
+
+-->
+
+Conclusion
+==========
+
+<!-- Give a short conclusion, corresponding to the aim -->
+
+References
+==========
+
+<!-- Do not edit by hand, references will be inserted and formatted automatically once you knit this document -->
