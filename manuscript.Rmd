@@ -57,11 +57,20 @@ investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
 should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 6-8 lines long. Support every statement with a citation -->
-Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay.
+Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay.
 
 In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
 
-Existing TQIP often originate in high-income countries, and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC). This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. If there is indeed a shortage of ICU beds in Indian hospitals, the study shall further quantify and propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
+Existing TQIP often originate in high-income countries, and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC). This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The study shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
+
+Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also has a considerable financial and social harm on their family members and communities. @traumaLMIC
+
+Aim
+-----------
+Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
+
+The theory being examined in this thesis is that there exist subset of the TITCO1 dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
+The size of this group in relation to the group that were admitted to the ICU indicate the magnitude of the unmet need of ICU beds. If, for every patient that did receive ICU care, there was another patient with similar predictors that wasn’t admitted due to scarcity of ICU resources, that would mean the ICU resources are 50% of what they ought to be.
 
 Methods 
 =======
@@ -89,7 +98,8 @@ Participants
 methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
-The TITCO1 data set includes all data recorded for trauma patients at the participating hospitals is included in the TITCO1 study. 
+The TITCO1 data set includes all data recorded for trauma patients at the participating hospitals. The patients have the common denominators than geographical location and trauma.  
+FRÅGA: finns en socioekonomisk selektion ? läs: är detta sjukhus dit vissa socioekonomiska grupper hamnar?
 
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
@@ -109,6 +119,8 @@ applicable. For each variable of interest, give sources of data and
 details of methods of assessment (measurement). Describe comparability
 of assessment methods if there is more than one group -->
 
+
+
 There are 193 possible observations recorded for each patient. A general presentation of these observations is in table_nums('tab_1')
 
 tab.1_cap <- table_nums(name = "tab_1", 
@@ -126,15 +138,12 @@ The qualitative data include categorical data such as coarse categorization or t
 
 Text data are freehand examination results and operation categorizations, as well as assigned ICD codes. These data are vast and contain a lot of useful information, but also introduce a lot of challenges. There is a lack of standardization, user dependence, heterogenous grouping caused by using too general ICD codes, and datamining challenges for this type of data. If it may cause inaccuracies or practical challenges, it shall be omitted.
 
-The intermediate outcome of interest is ICU admission, irregardless of duration, and to identify the predictors that warrant ICU admission. Therefore, the properties of the patients that were admitted into the ICU will be examined. The variables with the highest propensity to warrant a ICU admission to be ICU - predictors - will be identified. 
-Using these predictors and propensity score matching will identify patients that weren’t admitted into the ICU, but presented with a set of predictors - a propensity score - very similar to those that were admitted. The ultimate outcome of this analysis is to quantify this group of patients and consequently quantify the unmet need for ICU beds.
-
 
 Bias 
 ----
 
 <!-- Describe any efforts to address potential sources of bias -->
-The TITCO1 dataset are observational data collected from a clinical environment and not an experimental setting. Producing a randomized control trial study for these types of lifesaving medical interventions for trauma patients would obviously be morally indefensible. Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
+The TITCO1 dataset are observational data collected from a clinical environment and not an experimental setting.  Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
 
 This causality introduces biases that must be addressed in the statistical analysis. Traditionally, multivariable regression has been used tocontrol for confounding in these cases but methods based on propensity scores have become popular alternatives. Propensity Score Matching will be descibed in detail in chapter Statistical methods.
 
@@ -143,8 +152,10 @@ Study size
 ----------
 
 <!-- Explain how the study size was arrived at -->
-The data of 16047 trauma patients were collected at the participating hospitals over 2.5 years, as described in chapter Settings
+The data of 16047 trauma patients were collected at the participating hospitals over 2.5 years, as described in chapter Settings.
 47 entries have been randomly excluded for anonymization purposes, and for the purpose of this study the 120 patients who were dead on arrival have been excluded aswell. 
+
+Återkom: XX patients were discarded because of missing data
 
 Quantitative variables
 ----------------------
@@ -162,26 +173,33 @@ Statistical methods
 (a) Describe all statistical methods, including those used to control
 for confounding
 -->
-Propensity score matching will be used in this analysis. Propensity score matching (PSM) is typically performed to determine the efficacy of a conditionalized intervention - causality between the dependent variables and available independent variables - where there is a need to offset or balance the effect of this causality. 
+Propensity score matching will be used in this analysis. Propensity score matching (PSM) is best explained using one typical application: identifying a control group when examining the efficacy of an intervention for a specific outcome, where there is causality between the independent variables for the intervention, and sometimes also the outcome. There is a need to offset or balance the effect of this causality, but a randomized case-control study could be impractical or immoral.
+
+In this context, it could be to examine the efficacy of ICU care on survival. If the correlation between the independent variables and the intervention and outcome isn't accounted for, a simple comparison between the cohort that did go to the ICU to the cohort that did not, would find that ICU care actually increased mortality. In the TITCO1 dataset the survival rate of patients who did not go to the ICU was 81% versus 68% for patients who did. This is of course an incorrect conclusion, this data has treatment selection bias as patient covariates often confound treatment selection. The higher mortality observed in patients who received ICU care is because patients were selected for the intervention because they presented certain medical conditions that also carry a high mortality - even with the intervention ICU care. Producing a randomized control trial study for these types of lifesaving medical interventions for trauma patients would obviously go against ethical guidelines of research, and another approach to produce a control group is necessary. Propensity score matching is a statistical procedure for reducing this bias by assembling a sample from within the data set, in which confounding factors are balanced between the cohort that got the intervention and the cohort that did not. 
 <!-- 
 The goal of propensity score matching is usually to identify suitable control subjects that did not receive an intervention, even though they fairly well met the same inclusion criteria that the subjects that did receive the intervention had. Control subjects who are similar enough to the intervention group in the most relevant aspects for receiving treatment. 
 -->
-In this context PSM could provide tools for an unbiased examination of the efficacy of ICU care on mortality. When simply comparing the cohort that did go to the ICU to the cohort that did not, it would appear that ICU care actually increased mortality. In the TITCO1 dataset the survival rate of patients who did not go to the ICU was 81% versus 68% for patients who did. This is of course an incorrect conclusion, the higher mortality rates in the ICU is because patients who are admitted here are worse off. If, however, the conditions that typically warrant ICU admission could be identified, a subset of the TITCO1 dataset that fairly well met those criteria but did not go to the ICU could be identified using propensity score matching. 
+The size of this subset in relation to the subset of patients that did receive ICU care is the end point for this analysis. This proportion is indicative of the unmet need of ICU beds, as described in chapter Aim.
+In the typical PSM appliction, this subset is used as the control group to determine the efficacy of ICU care for some outcome, eg mortality.
 
-Identifying a subset of patients that should have received ICU care but didn't is the end point for this thesis.
-In the typical PSM context this subset is further used as the control group to determine the efficacy of ICU care.
+The first step is to identify predictor variables: covariates most predictive of the dependent variable. In this context it means to first identify the conditions and medical interventions received that correlate best to being offered ICU care. All properties of the patients that were sent to the ICU will be compared to the patents who didn't, in order to identify properties that distinguishes this cohort. 
 
-The first step is to identify predictor variables: independent variables most predictive of the outcome or dependent variable. In this context it means to first identify the conditions and medical interventions received that correlate to ICU care. All properties of the patients that were sent to the ICU will be compared to the patents who didn't, in order to identify properties that distinguishes this cohort. 
+Second step is to calculate propensity scores for all patients. Each patient in the TITCO1 data set gets a propensity score based on their medical conditions and interventions, specifically their individual values of the predictor variables. The propensity score determines the likelihood that a patient will receive ICU care, given their condition.
 
-Second step is to calculate propensity scores for all patients. Each patient in the TITCO1 data set gets a propensity score based on their medical conditions and interventions, specifically their individual values of the predictor variables.The propensity score determines the likelihood that a patient will receive ICU care, given their condition.
-
-Third step is PSM. PSM identify members of the subset that did not get the intervention but had the same predictors as the subgroup that did get the intervention. The purpose of the propensity score matching is identifying patients that weren’t admitted into the ICU, but presented with a set of predictors - a propensity score - very similar to those that were admitted. 
-
-
+Third step is PSM. PSM is a standardized mathematical approach to identify members of the subset that did not get the intervention but had the same predictors as the subgroup that did get the intervention. The purpose of the propensity score matching is identifying patients that weren’t admitted into the ICU, but presented with a set of predictors - a propensity score - very similar to those that were admitted. 
 
 (b) Describe any methods used to examine subgroups and interactions
 
 (c) Explain how missing data were addressed 
+The data completion rate is presented in table_nums('tab_1'). As the base assumption, all quantitative variables collected for each patient are considered potential recordings. Data that are missing are assumed missing because care for a patient did not motivate the collection of the data. For example, if serum creatinine was not recorded, it is assumed that the collection of this variable wasn't relevant for care of the patient. 
+
+There are some variables that should reasonably have been collected and documented given the patient condition, but omission will not be cause of dismissal unless these variables are predictors.
+
+All patients with incomplete observations for any predictors will be discarded. For relevant qualitative variables, missing data did not automatically warrant dismissal, if the missing data could be indirectly proven. For example if the quantitative yes/no for an examination like a CT scan was missing, it was deemed a 'yes' if there was a CT scan result recorded. If both were missing, the patient data was dismissed.
+All vital parameters are considered mandatory, irregardless of patient condition so patients without data of heart rate, systolic blood pressure or respiration rate at any time of their hospital stay, have been discarded.  
+FRÅGA: right?
+
+All quantitative data from the original dataset that were entered as zero but where a zero value is physiologically impossible were replaced with NA values. Zero values for variables where it is possible to have zero values, such as respiration rate and heart rate were left as zeroes to not tamper with the data, although a zero value indicate that the variable probably wasn't measured. These amount to 250 and 155 entries respectively for the first observation within an hour and less than 100 for both for the second observation after 24 h, so the choice to include or exclude these observations won’t skew the data considerably. 
 
 (d) 
 

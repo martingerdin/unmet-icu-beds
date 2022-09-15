@@ -18,7 +18,7 @@
 ## them). They all need to be sourced however when you compile your
 ## manuscript file or run this file as a job, as that happens in a
 ## clean R session.
-noacsr::source_all_functions()
+#noacsr::source_all_functions()
 library(tidyverse)
 library(tableone)
 
@@ -26,9 +26,21 @@ library(tableone)
 headerproperties <- read.csv("headerproperties.csv")
 titcodata <- read.csv("titcodata.csv")
 
+#FRÅGA: jag kan inte hitta hur man definierar eller filtrerar på row headers, men jag kan göra det här superjobbiga sättet
+typefilt=filter(headerrows, name == "type") #gör en dataframe av type-raden
+typetrans <- data.table::transpose(typefilt) #transponera den. jo. humor me. jag måste transponera eftersom jag bara vet hur man filtrerar på kolumnnamn
+timers=filter(typetrans, V1 == "time" | V1 == "date") #NU kan jag applicera den här arbetshästen
+counttimers=length(timers)
+#och det kan jag bara göra för att göra counts jag har ju tappat alla associationer inom datasetet
+
 #ladda vektorerna med kvantitativa och kvalitativa datan
 load("quantitativecolumnname.rdata")
 load("qualitativecolumnname.rdata")
+load("textcolumnname.rdata")
+
+#sortera bort DOA
+alive=filter(titcodata, incl != 2)
+titcodata=alive
 
 ## Whatever you do next, maybe clean data?
 #definiera dataseten
@@ -38,10 +50,12 @@ nolicu=filter(titcodata, licu <0.5)
 #välj kvant kolumnerna
 quantitativeLicu <- licu[, which((names(licu) %in% quantitativecolumnname)==TRUE)]
 quantitativeNolicu <- nolicu[, which((names(nolicu) %in% quantitativecolumnname)==TRUE)]
+quantitativeTitco <- titcodata[, which((names(titcodata) %in% quantitativecolumnname)==TRUE)]
 
 #gör stat analysen
 quantitatestatlicu=CreateTableOne(data = quantitativeLicu,includeNA=FALSE)
 quantitatestatnolicu=CreateTableOne(data = quantitativeNolicu,includeNA=FALSE)
+
 
 #gör t.test för alla kvant kolumner
 columncount=length(quantitativecolumnname) #hur många kolumner ska vi rulla
