@@ -57,19 +57,20 @@ investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
 should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 6-8 lines long. Support every statement with a citation -->
-Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay.
+Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
 In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
 
 Existing TQIP often originate in high-income countries, and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC). This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The study shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
 
-Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also has a considerable financial and social harm on their family members and communities. @traumaLMIC
+Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities. @traumaLMIC
 
 Aim
 -----------
 Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
 
 The theory being examined in this thesis is that there exist subset of the TITCO1 dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
+
 The size of this group in relation to the group that were admitted to the ICU indicate the magnitude of the unmet need of ICU beds. If, for every patient that did receive ICU care, there was another patient with similar predictors that wasn’t admitted due to scarcity of ICU resources, that would mean the ICU resources are 50% of what they ought to be.
 
 Methods 
@@ -98,8 +99,11 @@ Participants
 methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
-The TITCO1 data set includes all data recorded for trauma patients at the participating hospitals. The patients have the common denominators than geographical location and trauma.  
+The TITCO1 data set includes all data recorded for trauma patients of the emergency departments at the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. 
 FRÅGA: finns en socioekonomisk selektion ? läs: är detta sjukhus dit vissa socioekonomiska grupper hamnar?
+
+47 patients were excluded for anonymization purposes, 120 patients were excluded because they were dead on arrival, and further XX pat were excluded because of missing data. 
+
 
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
@@ -190,7 +194,8 @@ Third step is PSM. PSM is a standardized mathematical approach to identify membe
 
 (b) Describe any methods used to examine subgroups and interactions
 
-(c) Explain how missing data were addressed 
+Missing Data
+-------------
 The data completion rate is presented in table_nums('tab_1'). As the base assumption, all quantitative variables collected for each patient are considered potential recordings. Data that are missing are assumed missing because care for a patient did not motivate the collection of the data. For example, if serum creatinine was not recorded, it is assumed that the collection of this variable wasn't relevant for care of the patient. 
 
 There are some variables that should reasonably have been collected and documented given the patient condition, but omission will not be cause of dismissal unless these variables are predictors.
