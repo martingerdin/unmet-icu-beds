@@ -65,6 +65,14 @@ Existing TQIP often originate in high-income countries, and are either not appli
 
 Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities. @traumaLMIC
 
+Ethical considerations
+----------------------
+The data has been thoroughly anonymized. Each patient have been given an ID number, time frames have been shifted to make identification by admission and discharge or death dates impossible, and a further 47 patients have been omitted from the data set to shift the data frames and disable tracking.
+
+The study is observational, the care provided to each patient has been evidence-based best available care. The data are standard details that would have been recorded anyway, and collection has not delayed or interfered with care nor added any cost. 
+
+FRÅGA: jag kan inte se att consent tagits?
+
 Aim
 -----------
 Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
@@ -90,7 +98,7 @@ Setting
 periods of recruitment, exposure, follow-up, and data collection -->
 FRÅGA: kopierat rakt av härifrån https://github.com/titco/titco-I
 Men det är ju exakt vad som ska under den här rubriken. Får man göra så eller är det plagiat?
-The TITCO-I v1 dataset includes data on 16 000 patients admitted to four public university hospitals in urban India. The original dataset included 16 047 patients but 47 patients were deleted from the dataset for anonymization purposes, see the anonymization section for more details. At the time of the research Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi, was a dedicated trauma centre with almost 180 beds. King Edward Memorial hospital (KEM), Mumbai, was a tertiary level hospital with no dedicated trauma ward. Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai was a tertiary level public university hospital with a dedicated trauma ward with 14 beds. The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata was a tertiary level public university hospital, but without a dedicated trauma ward. The cost of care in these hospitals was nominal and the patients admitted represented mainly a lower socioeconomic stratum of the population. The first patient was enrolled in July 2013 and the last patient in December 2015. The exact enrollment period varied across participating hospitals.
+The TITCO-I v1 dataset includes data on 16 000 patients admitted to four public university hospitals in urban India. The original dataset included 16 047 patients but 47 patients were deleted from the dataset for anonymization purposes, see the anonymization section for more details. At the time of the research Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi, was a dedicated trauma centre with almost 180 beds. King Edward Memorial hospital (KEM), Mumbai, was a tertiary level hospital with no dedicated trauma ward. Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai was a tertiary level public university hospital with a dedicated trauma ward with 14 beds. The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata was a tertiary level public university hospital, but without a dedicated trauma ward. The cost of care in these hospitals was nominal. The first patient was enrolled in July 2013 and the last patient in December 2015. The exact enrollment period varied across participating hospitals.
 
 Participants
 ------------
@@ -100,10 +108,9 @@ methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
 The TITCO1 data set includes all data recorded for trauma patients of the emergency departments at the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. 
-FRÅGA: finns en socioekonomisk selektion ? läs: är detta sjukhus dit vissa socioekonomiska grupper hamnar?
+The patients represent mainly the lower stratum of socioeconomic stratum of their communities.
 
 47 patients were excluded for anonymization purposes, 120 patients were excluded because they were dead on arrival, and further XX pat were excluded because of missing data. 
-
 
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
@@ -122,9 +129,6 @@ confounders, and effect modifiers. Give diagnostic criteria, if
 applicable. For each variable of interest, give sources of data and
 details of methods of assessment (measurement). Describe comparability
 of assessment methods if there is more than one group -->
-
-
-
 There are 193 possible observations recorded for each patient. A general presentation of these observations is in table_nums('tab_1')
 
 tab.1_cap <- table_nums(name = "tab_1", 
@@ -149,7 +153,15 @@ Bias
 <!-- Describe any efforts to address potential sources of bias -->
 The TITCO1 dataset are observational data collected from a clinical environment and not an experimental setting.  Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
 
-This causality introduces biases that must be addressed in the statistical analysis. Traditionally, multivariable regression has been used tocontrol for confounding in these cases but methods based on propensity scores have become popular alternatives. Propensity Score Matching will be descibed in detail in chapter Statistical methods.
+If the purpose of this thesis were to examine the efficacy of ICU care on eg. mortality, this bias would have to be addressed using some statistical tool, but it is not. The purpose of this thesis is use these same methods to assemble a control group but not for the purpose of examining the efficacy of ICU care on eg. mortality, but to identify and quantify the subset of patients that should have been admitted to the ICU but weren't.
+
+Propensity Score Matching will be described in detail in chapter Statistical methods.
+
+FRÅGA: Bör jag tänka på någon bias iallafall? Jag kan tänka mig att det finns skillnader mellan sjukhusen som bör undersökas (de har väl inte nödvändigtvis exakt samma proportioner ICU-sängar givet upptagningsområde, och att ett sjukhus därför kan vara mycket mer generös med ICU-sängarna än ett annat?), men vad för typ av statistisk bias är det isåfall? 
+Det finns en selection bias i att det är lägre socioekonomisk stratum, men hur relevant är den?
+
+Propensity score matching in itself introduces a source of bias. The researcher chooses the predictor variables and so can introduce a self-fulfilling prophecy. For this reason the dataset shall be randomly split into two parts of 40% and 60% of the patients. The 40% shall be used to produce the propensity score matching, and the 60% shall be used to verify it. 
+Fråga: typ?
 
 
 Study size 
@@ -194,6 +206,8 @@ Third step is PSM. PSM is a standardized mathematical approach to identify membe
 
 (b) Describe any methods used to examine subgroups and interactions
 
+The two subgroups were patients admitted to the ICU, and the patients who weren't. Admission to the iCU is a binary yes or no, length of stay has not been taken into Consideration.
+
 Missing Data
 -------------
 The data completion rate is presented in table_nums('tab_1'). As the base assumption, all quantitative variables collected for each patient are considered potential recordings. Data that are missing are assumed missing because care for a patient did not motivate the collection of the data. For example, if serum creatinine was not recorded, it is assumed that the collection of this variable wasn't relevant for care of the patient. 
@@ -219,9 +233,39 @@ taking account of sampling strategy
 (e) Describe any sensitivity analyses
 -->
 
+
+Predictor selection 
+-------------------
+The quantitative data did not produce any clear results see table_nums('tab_2')
+
+tab.2_cap <- table_nums(name = "tab_2", 
+                        caption = "Means and standard devations of quantitative variables of ICU and non-ICU admitted patients, respectively")
+                        
+                     knitr::kable(table3, "simple"), 
+
+This is perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
+
+P-values and T-values of non-ICU vs ICU patients:
+
+tab.3_cap <- table_nums(name = "tab_3", 
+                        caption = "P- and t-values of the quantitative values in comparison of non-ICU and ICU patients")
+                        
+                     knitr::kable(statresult, "simple"), 
+
+
+FRÅGA: är p-värdena rimliga tycker du? de är superlåga och min känsla - med 5 hp statistik i ryggen - är att std-avvikelsen är för stor för det?
+
+For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. The proportions are presented in tab.4_cap <- table_nums(name = "tab_4", 
+                        caption = "Proportion of patients admitted to the ICU for all variants of all quuantitative variables")
+                        
+                     knitr::kable(qualitativetable, "simple"), 
+
 Results
 =======
 
+                     
+
+                     
 <!-- 
 
 Participants
