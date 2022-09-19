@@ -69,7 +69,7 @@ Ethical considerations
 ----------------------
 The data has been thoroughly anonymized. Each patient have been given an ID number, time frames have been shifted to make identification by admission and discharge or death dates impossible, and a further 47 patients have been omitted from the data set to shift the data frames and disable tracking.
 
-The study is observational, the care provided to each patient has been evidence-based best available care. The data are standard details that would have been recorded anyway, and collection has not delayed or interfered with care nor added any cost. 
+The study is observational, the care provided to each patient has been evidence-based best available care. The data are standard details collected by a dedicated officer from the research team, and collection has not delayed or interfered with care. 
 
 FRÅGA: jag kan inte se att consent tagits?
 
@@ -100,6 +100,8 @@ FRÅGA: kopierat rakt av härifrån https://github.com/titco/titco-I
 Men det är ju exakt vad som ska under den här rubriken. Får man göra så eller är det plagiat?
 The TITCO-I v1 dataset includes data on 16 000 patients admitted to four public university hospitals in urban India. The original dataset included 16 047 patients but 47 patients were deleted from the dataset for anonymization purposes, see the anonymization section for more details. At the time of the research Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi, was a dedicated trauma centre with almost 180 beds. King Edward Memorial hospital (KEM), Mumbai, was a tertiary level hospital with no dedicated trauma ward. Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai was a tertiary level public university hospital with a dedicated trauma ward with 14 beds. The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata was a tertiary level public university hospital, but without a dedicated trauma ward. The cost of care in these hospitals was nominal. The first patient was enrolled in July 2013 and the last patient in December 2015. The exact enrollment period varied across participating hospitals.
 
+COPYPASTE: One dedicated project officer collected data on site for approximately eight hours, five days per week. The shifts were rotated, so that the project officers worked morning, evening, and night shifts, and then had a day off. This way all possible shifts were covered during the course of a month. Data for patients arriving during the project officers shifts were collected by direct observation in the area where trauma patients were received, and the project officers were allowed to ask the health care staff for values of parameters not entered into the patient's records. For example, if the systolic blood pressure was measured (the project officer could see it being measured) but was not documented in the patient record, the project officer was allowed to ask for its value. Data for patients arriving to hospital outside the project officers' shifts were recorded from patient records. These patients were identified from the nurses' log books in the emergency department.
+
 Participants
 ------------
 
@@ -107,10 +109,11 @@ Participants
 methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
-The TITCO1 data set includes all data recorded for trauma patients of the emergency departments at the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. 
+The TITCO1 data set includes all data recorded for trauma patients of the emergency departments at the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. Patients with isolated limb injury and patients who were dead on arrival were not included.
 The patients represent mainly the lower stratum of socioeconomic stratum of their communities.
 
-47 patients were excluded for anonymization purposes, 120 patients were excluded because they were dead on arrival, and further XX pat were excluded because of missing data. 
+
+47 patients were excluded for anonymization purposes,  Further XX pat were excluded because of missing data. 
 
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
@@ -156,7 +159,7 @@ Bias
 <!-- Describe any efforts to address potential sources of bias -->
 The TITCO1 dataset are observational data collected from a clinical environment and not an experimental setting.  Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
 
-If the purpose of this thesis were to examine the efficacy of ICU care on eg. mortality, this bias would have to be addressed using some statistical tool, but it is not. The purpose of this thesis is use these same methods to assemble a control group but not for the purpose of examining the efficacy of ICU care on eg. mortality, but to identify and quantify the subset of patients that should have been admitted to the ICU but weren't.
+If the purpose of this thesis were to examine the efficacy of ICU care on eg. mortality, this bias would have to be addressed using some statistical tool, but it is not. The purpose of this thesis is use these same methods to assemble a control group not for the purpose of examining the efficacy of ICU care on eg. mortality, but to identify and quantify the subset of patients that should have been admitted to the ICU but weren't.
 
 Propensity Score Matching will be described in detail in chapter Statistical methods.
 
@@ -239,6 +242,26 @@ taking account of sampling strategy
 
 Predictor selection 
 -------------------
+
+Predictor variables will be selected using both clinical judgement and data analysis. 
+
+Clinical experience compels inclusion of vital parameters, irregardless if there is any statistical motivation. Such variables are hart rate, systolic blood pressure and respiration rate.
+
+The TITCO1 data set is analyzed mathemathically in pursuit of suitable predictor variables. The data set is divided into two subgroups, the cohort that were admitted to the ICU and the cohort that wasn't. In comparison between these subgroups, identify variables that distinguishes the former from the latter. 
+
+Mean and standard deviation for the quantitative data is analysed for the ICU and non-ICU cohort respectively. p- and t-values when comparing these cohorts to show if there are any statistically significant differences.
+
+For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. 
+
+Some qualitative parameters such as intubation are recorded after both 1 and 24 hours, if applicable. The record at 1 hour has two options indicating the patient is intubated, "before arrival" meaning the patient was intubated at a their first health care facility and "yes" meaning the patient was intubated within the first hour. Because these two options both mean the patient was intubated after 1 hour, an aggregate parameter has been created for this, and a further parameter "intubated after 24 hours" that summarize the patients who were intubated on arrival, the patients who were intubated within the first hour and the patients who were intubated between 1 and 24 hours. 
+
+FRÅGA: det finns pat som är intuberade "before arrival" men som inte är noterade som transferred från ett annat sjukhus. De har kommit med motor rickshaw. Är det rimligt att anta att de är transferred från ett sjukhus iallafall för vem har annars intuberat dessa patienter?
+
+The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, where only asmall proportion of patients had been taken within the first hour but a substantial proportion of patients had been taken to the operation theatre after 24 hours. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
+
+Results
+=======
+
 The quantitative data did not produce any clear results see table_nums('tab_2')
 
 ```{r}
@@ -262,7 +285,7 @@ knitr::kable(table3, caption = "P- and t-values of the quantitative values in co
 
 FRÅGA: är p-värdena rimliga tycker du? de är superlåga och min känsla - med 5 hp statistik i ryggen - är att std-avvikelsen är för stor för det?
 
-For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. The proportions are presented in 
+The proportions of the qualitative data are presented in 
 
 ```{r}
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
@@ -270,11 +293,6 @@ load("qualitativetable.rdata")
 
 knitr::kable(qualitativetable, caption = "Proportion of patients admitted to the ICU for all variants of all quuantitative variables")
 ```
-
-
-Results
-=======
-
                      
 
                      
@@ -365,7 +383,13 @@ Limitations
 Discuss limitations of the study, taking into account sources of
 potential bias or imprecision.  Discuss both direction and magnitude
 of any potential bias
+-->
 
+In order to limit the scope of this thesis work, a few quite relevant factors could not be considered. One of the most important factors was temporality. Emergency rooms everywhere face significant variations in patient loads over the week or special occasions such as the Diwali festival. A different approach completely but to the same effect would have been to consider the ICU wards at the participating hospitals and chronologically determine which patients did not receive ICU care because these wards were at capacity. Though intuitively it would seem possible to do given the TITCO1 dataset, it would have been very difficult to do practically. 
+
+Length of stay in hours is ICU care was recorded in the TITCO1 data set, but for the purpose of this thesis ICU admission has been reducedn to a binary 'yes' or 'no'. Because it is not uncommon to discontinue ICU care prematurely in favor of patients with more dire needs, the next step would be to consider such circumstances. 
+
+<!--
 Interpretation
 --------------
 
