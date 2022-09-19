@@ -257,7 +257,13 @@ Some qualitative parameters such as intubation are recorded after both 1 and 24 
 
 FRÅGA: det finns pat som är intuberade "before arrival" men som inte är noterade som transferred från ett annat sjukhus. De har kommit med motor rickshaw. Är det rimligt att anta att de är transferred från ett sjukhus iallafall för vem har annars intuberat dessa patienter?
 
-The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, where only asmall proportion of patients had been taken within the first hour but a substantial proportion of patients had been taken to the operation theatre after 24 hours. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
+<!-- 
+The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, where only a small proportion of patients had been taken within the first hour but a substantial proportion of patients had been taken to the operation theatre after 24 hours. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
+-->
+The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, and operations performed in the first hour tend to be more acute than operations performed within the first day of hospitalization. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
+
+The free hand text based information available contain information about examination findings, surgery types and ICD codes. Many of these data fields contain crucial information about patient condition, but also present a few challenges as described in chapter: Variables and data sources/measurements. These text based data fields will be examined for entries that are more prevalent in the ICU cohort than the non-ICU cohort, and combined with clinical experience to select suitable predictors. 
+
 
 Results
 =======

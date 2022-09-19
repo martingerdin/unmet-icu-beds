@@ -19,7 +19,11 @@
 ## manuscript file or run this file as a job, as that happens in a
 ## clean R session.
 #noacsr::source_all_functions()
+
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+
 library(tidyverse)
+library(dplyr)
 library(tableone)
 
 ## Import data
@@ -28,6 +32,7 @@ titcodata <- read.csv("titcodata.csv")
 #jag har manuellt ändrat och städat lite i dessa så jag sparar dem så jag kan committa dem:
 save(headerproperties, file = "headerproperties.RData")
 save(titcodata, file = "titcodata.RData")
+headerrows <- head(headerproperties)
 
 #FRÅGA: jag kan inte hitta hur man definierar eller filtrerar på row headers, men jag kan göra det här superjobbiga sättet
 typefilt=filter(headerrows, name == "type") #gör en dataframe av type-raden
@@ -40,6 +45,7 @@ counttimers=length(timers)
 load("quantitativecolumnname.rdata")
 load("qualitativecolumnname.rdata")
 load("textcolumnname.rdata")
+load("quantitativelong.rdata")
 
 #sortera bort DOA
 alive=filter(titcodata, incl != 2)
@@ -95,6 +101,12 @@ noICU_mean=myDf$mean
 noICU_sigma=myDf$sd
 myDfmeannolicu <- as.data.frame(noICU_mean)
 myDfsdnolicu <- as.data.frame(noICU_sigma)
+mean_diff=noICU_mean-ICU_mean
+mean_diffdf<- as.data.frame(mean_diff)
 
 #det här är mean och std av ICU vs no-ICU
-table2<- data.frame(df_t,myDfmeanlicu,myDfsdlicu,myDfmeannolicu,myDfsdnolicu)
+table3<- data.frame(df_t,myDfmeanlicu,myDfsdlicu,myDfmeannolicu,myDfsdnolicu, mean_diffdf)
+
+
+save(table3, file = "table3.RData")
+save(statresult, file = "statresult.RData")
