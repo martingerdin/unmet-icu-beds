@@ -52,11 +52,16 @@ Conclusion
 Introduction
 ============
 
+NOTE2SELF: för projektredogörelsen feta ut och ha med paragraferna här som temporaries och säg till när de är klara för kommentering intro och metoddelen, 
+Fråga Johanna: 3-5 sidor ja men det är en rekommendation och formatet med omfattande bakgrund passar inte den här typen av studie. jag kan men jag vet inte om det är meningsfullt att producera 2 sidor text baraföratt? I instruktionen skriver KI själva att det är en kontrollmekanism bara "koordinatorn får en uppfattning om progress i projektet,". Kan jag bara motivera utformningen så är jag inte orolig
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
 should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 6-8 lines long. Support every statement with a citation -->
+
+Background
+----------
 Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
 In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
@@ -65,19 +70,12 @@ Existing TQIP often originate in high-income countries, and are either not appli
 
 Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities. @traumaLMIC
 
-Ethical considerations
-----------------------
-The data has been thoroughly anonymized. Each patient have been given an ID number, time frames have been shifted to make identification by admission and discharge or death dates impossible, and a further 47 patients have been omitted from the data set to shift the data frames and disable tracking.
-
-The study is observational, the care provided to each patient has been evidence-based best available care. The data are standard details collected by a dedicated officer from the research team, and collection has not delayed or interfered with care. 
-
-FRÅGA: jag kan inte se att consent tagits?
 
 Aim
 -----------
 Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
 
-The theory being examined in this thesis is that there exist subset of the TITCO1 dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
+The theory being examined in this thesis is that there exist subset of the TITCO-I dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
 
 The size of this group in relation to the group that were admitted to the ICU indicate the magnitude of the unmet need of ICU beds. If, for every patient that did receive ICU care, there was another patient with similar predictors that wasn’t admitted due to scarcity of ICU resources, that would mean the ICU resources are 50% of what they ought to be.
 
@@ -96,11 +94,12 @@ Setting
 
 <!-- Describe the setting, locations, and relevant dates, including
 periods of recruitment, exposure, follow-up, and data collection -->
-FRÅGA: kopierat rakt av härifrån https://github.com/titco/titco-I
-Men det är ju exakt vad som ska under den här rubriken. Får man göra så eller är det plagiat?
-The TITCO-I v1 dataset includes data on 16 000 patients admitted to four public university hospitals in urban India. The original dataset included 16 047 patients but 47 patients were deleted from the dataset for anonymization purposes, see the anonymization section for more details. At the time of the research Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi, was a dedicated trauma centre with almost 180 beds. King Edward Memorial hospital (KEM), Mumbai, was a tertiary level hospital with no dedicated trauma ward. Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai was a tertiary level public university hospital with a dedicated trauma ward with 14 beds. The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata was a tertiary level public university hospital, but without a dedicated trauma ward. The cost of care in these hospitals was nominal. The first patient was enrolled in July 2013 and the last patient in December 2015. The exact enrollment period varied across participating hospitals.
+16 000 patients admitted to four public university hospitals in urban India are included in the TITCO-I v1 dataset. Initially the data set included 16047 patients, but to improve anonymization 47 patients were deleted from the dataset as described in the chapter anonymization. The participating hospitals were King Edward Memorial hospital (KEM) and Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai, Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi and The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata. When the data was collected JPNATC had almost 180 beds in a dedicated trauma centre, KEM had no specific trauma ward and was a tertiary referral hospital, LTMGH had a specific trauma ward with 14 beds and was a tertiary referral public university hospital and SSKM had no specific trauma ward and was a public university tertiary referral hospital.
 
-COPYPASTE: One dedicated project officer collected data on site for approximately eight hours, five days per week. The shifts were rotated, so that the project officers worked morning, evening, and night shifts, and then had a day off. This way all possible shifts were covered during the course of a month. Data for patients arriving during the project officers shifts were collected by direct observation in the area where trauma patients were received, and the project officers were allowed to ask the health care staff for values of parameters not entered into the patient's records. For example, if the systolic blood pressure was measured (the project officer could see it being measured) but was not documented in the patient record, the project officer was allowed to ask for its value. Data for patients arriving to hospital outside the project officers' shifts were recorded from patient records. These patients were identified from the nurses' log books in the emergency department.
+The data was collected between July 2013 and December 2015 but the collection period for any individual hospitals did not cover this period.
+
+A dedicated project officer involved in the data collection was on site five days per week, approximately eight hours a day. The project officers covered night, evening and morning shifts in a way so all shift variants were covered every month of collection. Project officers worked in the area where trauma patients arrived to the hospital and collected data for patients arriving during their shift through direct observation. If the officer observed an examination being performed but not documented in the patient records were allowed to ask health care staff for the result. If a trauma patient arrived when a project officer was not on site, they were identified from the log books of the nurses on staff in the emergency department and their data was collected from patient records. 
+
 
 Participants
 ------------
@@ -109,11 +108,9 @@ Participants
 methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
-The TITCO1 data set includes all data recorded for trauma patients of the emergency departments at the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. Patients with isolated limb injury and patients who were dead on arrival were not included.
-The patients represent mainly the lower stratum of socioeconomic stratum of their communities.
+The eligibility criteria for the TITCO-I data set were patients who presented with trauma at the emergency departments of the participating hospitals. Trauma covers injury and with a mechanism of road traffic, railway, fall, burn or assault. Patients who were dead on arrival were excluded, as were patients who only had isolated limb injuries.
+A majority of patients came from low socioeconomic circumstances in their respective communities. 
 
-
-47 patients were excluded for anonymization purposes,  Further XX pat were excluded because of missing data. 
 
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
@@ -123,6 +120,42 @@ of controls per case -->
 
 <!-- Cross-sectional study: Give the eligibility criteria, and the
 sources and methods of selection of participants -->
+Ethical considerations
+----------------------
+Ethical approval for the collection of the data was obtained from the boards of ethical approval in all four hospitals.
+
+SSKM, LTMGH, KEM and JPNATC name of ethical review boards and approval reference numbers were IPGME&R Research Oversight Committee (IEC/279), Ethics Committee of the Staff and Research Society (IEC/11/13), Institutional Ethics Committee (IEC(I)/OUT/222/14), Institute Ethics Committee All India Institute of Medical Sciences (EC/NP-279/2013 RP-Ol/2013), respectively.
+
+The ethical review boards of all hospitals granted a waiver of informed consent. The trauma patients of in this study included patients in poor physiological, psychological and physical state, oftentimes unconscious or with reduced level of consciousness. The data collected for this study were merely routine data that would have been collected under normal circumstances and did not involve any additional examinations. The collection did not in any way interfere, delay or alter the care provided. Therefore the research team and the ethical review boards concluded that obtaining informed consent would only unneccesarily burden patients and/or family members. Personal details such as names, insurance details or contact information were not recorded. 
+
+Anonymization
+-------------
+Hospital identification number
+Hospital name has been replaced with a identification number, and the conversion key has not been saved so there is not possible to reverse the conversion. Despite this, a high degree of anonymization can not be expected because the hospitals do have some distinguishable features and these are reflected in the data collected. For example,  70 % of the railroad accidents in the data set is in one of the hospitals, and one of the hosapitals is in close proximity to a big railroad hub. 
+
+FRÅGA: Kan man och är det meningsfullt att analysera om sjukhus med dedikerade trauma wards får fler patienter körda till dem som sen hamnar på ICU? För när jag tittade lite på om man kunde luska ut vilket sjukhus som var vilket via just tran-parametern så var skillnaden tydlig. På ett sjukhus hamnar 96% av patienterna som transporterats från andra health facilities på IVA, och på ett annat sjukhus är det bara 4% och då gissar jag att det förra är ett sjukhus med en dedikerad trauma ward och det senare inte är det?
+det är vad det är för anonymiseringen det är lite begränsade möjligheter att anonymisera bra som jag illustrerar med järnvägsexemplet, men jag ställer frågan för om detta är en bias jag borde ta hänsyn till eller iallafall acknowledge ? Jag ställer i princip samma fråga i bias-kapitlet.
+
+
+Patient identification numbers
+Patient names were never recorded, patients were identified by a identification number in the original unencrypted data set. In the anonymization process the identification number has been replaced with another random identification number, and the conversion key has not been saved so there is not possible to reverse the conversion. 
+
+Date observations
+Dates recorded in the TITCO-I data set were shifted using a random offset of somewhere between 0 and 5 weeks for each patient, but without losing any relevant information. The offset was designed to not dissipate details that could be of potential use for researchers such as day of week and rough indication of season. The internal relations between dates have been preserved so that the timing of all recordings and discharge in chronological relation to admission are all intact. 
+
+It is important to note that all patients have sequence numbers that corresponded to the chronological order in which they arrived at any of the participating hospitals, and that sequence number has been kept intact. Keeping this sequence number variable intact allows for many useful operations such as examinations of trends in the data, while it is not possible to undo the date randomization by the sequence number variable, such an equation system is still underdetermined. Unfortunately this means it is also not possible to reconstruct the patient volumes at any given hospital on any given day and from that rate of resource engagement. In addition, 47 patient data were randomly deleted to prevent identification via the sequence number variable.
+
+Age
+Because very young and very old patients are so few, they have been grouped together to prevent identification via the age parameter.
+
+Fråga: man har buntat ihop 89+ arna för anonymisering, men 0-åringarna är bara 7 och ganska sårbara indentifieringsmässigt
+
+KOPPAT tills jag förstår och kan omformulera
+Injury descriptors and codes
+A random selection of 1% of injury descriptors entered into each of the variables e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, e_10, e_11, e_12, xray_1, xray_2, xray_3, xray_4, xray_5, xray_6, xray_7, xray_8, xray_9, xray_10, xray_11, fast_1, fast_2, fast_3, fast_4, fast_5, fast_6, fast_7, fast_8, fast_9, fast_10, fast_11, ct_1, ct_2, ct_3, ct_4, ct_5, ct_6, ct_7, ct_8, ct_9, ct_10, ct_11, ct_12, ct_13, op_1, op_2, op_3, op_4, op_5, op_6, op_7, op_8, op_9, op_10, op_11 were set to missing. Corresponding ICD-10 codes were also set to missing. This was done to prevent identification of patients based on the list of recorded injuries.
+KOPPAT
+
+
 
 Variables and data sources/measurements
 ---------------------------------------
@@ -139,12 +172,13 @@ There are 193 possible observations recorded for each patient. A general present
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
 load("table1_1.rdata")
 
-knitr::kable(table1_1, caption = "Data types collected in the TITCO1 dataset")
+knitr::kable(table1_1, caption = "Data types collected in the TITCO-I dataset")
 ```
 
 datatvätt:
 FRÅGA: quantitativa variablerna har många NA som jag tror egentligen är NO, ex om pat har haft syrgas vid spO2 mätning. kan jag tänka lite fritt här när det känns uppenbart eller ska jag förankra? också finns det ex obs där numeriska värdet för spO2 saknas men ändå data yes/no om pat fått syrgas och jag vet inte om sån data är meningsfull?
 FRÅGA: vad betyder GCS verbal V1?  det är inte felregistrerat det är ett alternativ i codebook. jag har hittat ett förslag om att det är pat som inte kan ge verbalt svar pga intub eller surgical airway, men det finns pat som har varken eller och GCS verbalt = 1v 
+
 
 The quantitative data include recorded parameters such as vital parameters, lab results, GCS total score and cumulative time in surgery or ICU, if applicable. Measurement or assessment techniques are standardized.  
 
@@ -157,16 +191,14 @@ Bias
 ----
 
 <!-- Describe any efforts to address potential sources of bias -->
-The TITCO1 dataset are observational data collected from a clinical environment and not an experimental setting.  Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
+The TITCO-I dataset are observational data collected from a clinical environment and not an experimental setting.  Medical interventions, examinations and ICU admission are not randomized, they are a consequence of a patients medical condition. There exists a causal effect between the independent and the dependent variables: a patient is sent to the ICU precisely because of the severity of their condition. 
 
-If the purpose of this thesis were to examine the efficacy of ICU care on eg. mortality, this bias would have to be addressed using some statistical tool, but it is not. The purpose of this thesis is use these same methods to assemble a control group not for the purpose of examining the efficacy of ICU care on eg. mortality, but to identify and quantify the subset of patients that should have been admitted to the ICU but weren't.
+Because the purpose of this thesis is to statistically assess how many patients that should have gone to the ICU but didn't, this particular selection bias does not skew the outcome and therefore does not have to be adressed. 
 
-Propensity Score Matching will be described in detail in chapter Statistical methods.
+FRÅGA: Bör jag tänka på någon bias iallafall? Jag kan tänka mig att det finns skillnader mellan sjukhusen som jag skriver lite om innan (de har väl inte nödvändigtvis exakt samma proportioner ICU-sängar givet upptagningsområde, och att ett sjukhus därför kan vara mycket mer generös med ICU-sängarna än ett annat? ICU admission rate skiljer sig ju en del och sjukhus med dedikerade trauma wards får fler svårt skakade patienter - inte minst ditkörda från andra sjukhus - som åker in på ICU, än sjukhus utan dessa resurser. en trauma patient med viss karakteristik påkörd utanför sjukhus A vs utanför sjukhus D verkar göra skillnad.), men vad för typ av statistisk bias är det isåfall? 
+Det finns en selection bias i att det är lägre socioekonomisk stratum, men hur relevant är den? Och om detta gäller hela data setet så påverkar det väl mera hur generaliserbara resultaten är, snarare än introducerar en bias jag måste addressera?
 
-FRÅGA: Bör jag tänka på någon bias iallafall? Jag kan tänka mig att det finns skillnader mellan sjukhusen som bör undersökas (de har väl inte nödvändigtvis exakt samma proportioner ICU-sängar givet upptagningsområde, och att ett sjukhus därför kan vara mycket mer generös med ICU-sängarna än ett annat?), men vad för typ av statistisk bias är det isåfall? 
-Det finns en selection bias i att det är lägre socioekonomisk stratum, men hur relevant är den?
-
-Propensity score matching in itself introduces a source of bias. The researcher chooses the predictor variables and so can introduce a self-fulfilling prophecy. For this reason the dataset shall be randomly split into two parts of 40% and 60% of the patients. The 40% shall be used to produce the propensity score matching, and the 60% shall be used to verify it. 
+Propensity score matching in itself introduces a source of bias. The researcher chooses the predictor variables and so can introduce an overdetermined set and a self-fulfilling prophecy. For this reason the dataset shall be randomly split into two parts of 40% and 60% of the patients. The 40% shall be used to produce the propensity score matching, and the 60% shall be used to verify it. 
 Fråga: typ?
 
 
@@ -175,7 +207,7 @@ Study size
 
 <!-- Explain how the study size was arrived at -->
 The data of 16047 trauma patients were collected at the participating hospitals over 2.5 years, as described in chapter Settings.
-47 entries have been randomly excluded for anonymization purposes, and for the purpose of this study the 120 patients who were dead on arrival have been excluded aswell. 
+47 entries have been randomly excluded for anonymization purposes.
 
 Återkom: XX patients were discarded because of missing data
 
@@ -185,7 +217,7 @@ Quantitative variables
 <!-- Explain how quantitative variables were handled in the
 analyses. If applicable, describe which groupings were chosen and why
 -->
-Fråga: hur diffar detta från vad som finns i Variables and data sources/measurements
+Fråga: hur diffar detta från vad som finns i Variables and data sources/measurements? Har jag missförstått rubriken variables eller den här rubriken?
 
 Statistical methods
 -------------------
@@ -197,7 +229,7 @@ for confounding
 -->
 Propensity score matching will be used in this analysis. Propensity score matching (PSM) is best explained using one typical application: identifying a control group when examining the efficacy of an intervention for a specific outcome, where there is causality between the independent variables for the intervention, and sometimes also the outcome. There is a need to offset or balance the effect of this causality, but a randomized case-control study could be impractical or immoral.
 
-In this context, it could be to examine the efficacy of ICU care on survival. If the correlation between the independent variables and the intervention and outcome isn't accounted for, a simple comparison between the cohort that did go to the ICU to the cohort that did not, would find that ICU care actually increased mortality. In the TITCO1 dataset the survival rate of patients who did not go to the ICU was 81% versus 68% for patients who did. This is of course an incorrect conclusion, this data has treatment selection bias as patient covariates often confound treatment selection. The higher mortality observed in patients who received ICU care is because patients were selected for the intervention because they presented certain medical conditions that also carry a high mortality - even with the intervention ICU care. Producing a randomized control trial study for these types of lifesaving medical interventions for trauma patients would obviously go against ethical guidelines of research, and another approach to produce a control group is necessary. Propensity score matching is a statistical procedure for reducing this bias by assembling a sample from within the data set, in which confounding factors are balanced between the cohort that got the intervention and the cohort that did not. 
+In this context, it could be to examine the efficacy of ICU care on survival. If the correlation between the independent variables and the intervention and outcome isn't accounted for, a simple comparison between the cohort that did go to the ICU to the cohort that did not, would find that ICU care actually increased mortality. In the TITCO-I dataset the survival rate of patients who did not go to the ICU was 81% versus 68% for patients who did. This is of course an incorrect conclusion, this data has treatment selection bias as patient covariates often confound treatment selection. The higher mortality observed in patients who received ICU care is because patients were selected for the intervention because they presented certain medical conditions that also carry a high mortality - even with the intervention ICU care. Producing a randomized control trial study for these types of lifesaving medical interventions for trauma patients would obviously go against ethical guidelines of research, and another approach to produce a control group is necessary. Propensity score matching is a statistical procedure for reducing this bias by assembling a sample from within the data set, in which confounding factors are balanced between the cohort that got the intervention and the cohort that did not. 
 <!-- 
 The goal of propensity score matching is usually to identify suitable control subjects that did not receive an intervention, even though they fairly well met the same inclusion criteria that the subjects that did receive the intervention had. Control subjects who are similar enough to the intervention group in the most relevant aspects for receiving treatment. 
 -->
@@ -206,7 +238,7 @@ In the typical PSM appliction, this subset is used as the control group to deter
 
 The first step is to identify predictor variables: covariates most predictive of the dependent variable. In this context it means to first identify the conditions and medical interventions received that correlate best to being offered ICU care. All properties of the patients that were sent to the ICU will be compared to the patents who didn't, in order to identify properties that distinguishes this cohort. 
 
-Second step is to calculate propensity scores for all patients. Each patient in the TITCO1 data set gets a propensity score based on their medical conditions and interventions, specifically their individual values of the predictor variables. The propensity score determines the likelihood that a patient will receive ICU care, given their condition.
+Second step is to calculate propensity scores for all patients. Each patient in the TITCO-I data set gets a propensity score based on their medical conditions and interventions, specifically their individual values of the predictor variables. The propensity score determines the likelihood that a patient will receive ICU care, given their condition.
 
 Third step is PSM. PSM is a standardized mathematical approach to identify members of the subset that did not get the intervention but had the same predictors as the subgroup that did get the intervention. The purpose of the propensity score matching is identifying patients that weren’t admitted into the ICU, but presented with a set of predictors - a propensity score - very similar to those that were admitted. 
 
@@ -245,13 +277,13 @@ Predictor selection
 
 Predictor variables will be selected using both clinical judgement and data analysis. 
 
-Clinical experience compels inclusion of vital parameters, irregardless if there is any statistical motivation. Such variables are hart rate, systolic blood pressure and respiration rate.
+Clinical experience compels inclusion of vital parameters, irregardless if there is any statistical motivation. Such variables are heart rate, systolic blood pressure and respiration rate. 
 
-The TITCO1 data set is analyzed mathemathically in pursuit of suitable predictor variables. The data set is divided into two subgroups, the cohort that were admitted to the ICU and the cohort that wasn't. In comparison between these subgroups, identify variables that distinguishes the former from the latter. 
+The TITCO-I data set is analyzed mathemathically in pursuit of suitable predictor variables. The data set is divided into two subgroups, the cohort that were admitted to the ICU and the cohort that wasn't. In comparison between these subgroups, identify variables that distinguishes the former from the latter. 
 
 Mean and standard deviation for the quantitative data is analysed for the ICU and non-ICU cohort respectively. p- and t-values when comparing these cohorts to show if there are any statistically significant differences.
 
-For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. 
+For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO-I data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. 
 
 Some qualitative parameters such as intubation are recorded after both 1 and 24 hours, if applicable. The record at 1 hour has two options indicating the patient is intubated, "before arrival" meaning the patient was intubated at a their first health care facility and "yes" meaning the patient was intubated within the first hour. Because these two options both mean the patient was intubated after 1 hour, an aggregate parameter has been created for this, and a further parameter "intubated after 24 hours" that summarize the patients who were intubated on arrival, the patients who were intubated within the first hour and the patients who were intubated between 1 and 24 hours. 
 
@@ -261,6 +293,7 @@ FRÅGA: det finns pat som är intuberade "before arrival" men som inte är noter
 The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, where only a small proportion of patients had been taken within the first hour but a substantial proportion of patients had been taken to the operation theatre after 24 hours. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
 -->
 The parameter "taken to the operation theatre" is a heterogenous qualitative parameter, and operations performed in the first hour tend to be more acute than operations performed within the first day of hospitalization. There is a need to consider the free text field operation type to filter out for operation types with higher propensity for ICU admission from operations with lower propensity. 
+FRÅGA: borde man ta operation within 24 hours och komplettera med text based operationstyp?
 
 The free hand text based information available contain information about examination findings, surgery types and ICD codes. Many of these data fields contain crucial information about patient condition, but also present a few challenges as described in chapter: Variables and data sources/measurements. These text based data fields will be examined for entries that are more prevalent in the ICU cohort than the non-ICU cohort, and combined with clinical experience to select suitable predictors. 
 
@@ -268,7 +301,7 @@ The free hand text based information available contain information about examina
 Results
 =======
 
-The quantitative data did not produce any clear results see table_nums('tab_2')
+The quantitative data results see table_nums('tab_2')
 
 ```{r}
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
@@ -277,18 +310,21 @@ load("table3.rdata")
 knitr::kable(table3, caption = "Means and standard devations of quantitative variables of ICU and non-ICU admitted patients, respectively")
 ```
 
-This is perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
+For many parameters the difference is small, perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
 
 P-values and T-values of non-ICU vs ICU patients:
 
+TASK4SELF: släng upp alla variabler i google sheetset
+.r fil för missing cleaning av titcodatasetet
+onsdag kolla kommentarerna löpande. 
+kolla på textbaserade parametrar
+släng upp alla tasks i slack, och instruera martin och johanna att kommentera i slack
 ```{r}
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
 load("statresult.rdata")
 
-knitr::kable(table3, caption = "P- and t-values of the quantitative values in comparison of non-ICU and ICU patients")
+knitr::kable(statresult, caption = "P- and t-values of the quantitative values in comparison of non-ICU and ICU patients")
 ```
-
-
 FRÅGA: är p-värdena rimliga tycker du? de är superlåga och min känsla - med 5 hp statistik i ryggen - är att std-avvikelsen är för stor för det?
 
 The proportions of the qualitative data are presented in 
@@ -391,9 +427,9 @@ potential bias or imprecision.  Discuss both direction and magnitude
 of any potential bias
 -->
 
-In order to limit the scope of this thesis work, a few quite relevant factors could not be considered. One of the most important factors was temporality. Emergency rooms everywhere face significant variations in patient loads over the week or special occasions such as the Diwali festival. A different approach completely but to the same effect would have been to consider the ICU wards at the participating hospitals and chronologically determine which patients did not receive ICU care because these wards were at capacity. Though intuitively it would seem possible to do given the TITCO1 dataset, it would have been very difficult to do practically. 
+In order to limit the scope of this thesis work, a few quite relevant factors could not be considered. One of the most important factors was temporality. Emergency rooms everywhere face significant variations in patient loads over the week or special occasions such as the Diwali festival. A different approach completely but to the same effect would have been to consider the ICU wards at the participating hospitals and chronologically determine which patients did not receive ICU care because these wards were at capacity. Though intuitively it would seem possible to do given the TITCO-I dataset, it would have been very difficult to do practically. 
 
-Length of stay in hours is ICU care was recorded in the TITCO1 data set, but for the purpose of this thesis ICU admission has been reducedn to a binary 'yes' or 'no'. Because it is not uncommon to discontinue ICU care prematurely in favor of patients with more dire needs, the next step would be to consider such circumstances. 
+Length of stay in hours is ICU care was recorded in the TITCO-I data set, but for the purpose of this thesis ICU admission has been reducedn to a binary 'yes' or 'no'. Because it is not uncommon to discontinue ICU care prematurely in favor of patients with more dire needs, the next step would be to consider such circumstances. 
 
 <!--
 Interpretation
