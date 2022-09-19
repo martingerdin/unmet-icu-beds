@@ -131,10 +131,13 @@ details of methods of assessment (measurement). Describe comparability
 of assessment methods if there is more than one group -->
 There are 193 possible observations recorded for each patient. A general presentation of these observations is in table_nums('tab_1')
 
-tab.1_cap <- table_nums(name = "tab_1", 
-                        caption = "Data types collected in the TITCO1 dataset")
-                        
-                     knitr::kable(table1_1, "simple")
+
+```{r}
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+load("table1_1.rdata")
+
+knitr::kable(table1_1, caption = "Data types collected in the TITCO1 dataset")
+```
 
 datatvätt:
 FRÅGA: quantitativa variablerna har många NA som jag tror egentligen är NO, ex om pat har haft syrgas vid spO2 mätning. kan jag tänka lite fritt här när det känns uppenbart eller ska jag förankra? också finns det ex obs där numeriska värdet för spO2 saknas men ändå data yes/no om pat fått syrgas och jag vet inte om sån data är meningsfull?
@@ -238,27 +241,36 @@ Predictor selection
 -------------------
 The quantitative data did not produce any clear results see table_nums('tab_2')
 
-tab.2_cap <- table_nums(name = "tab_2", 
-                        caption = "Means and standard devations of quantitative variables of ICU and non-ICU admitted patients, respectively")
-                        
-                     knitr::kable(table3, "simple"), 
+```{r}
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+load("table3.rdata")
+
+knitr::kable(table3, caption = "Means and standard devations of quantitative variables of ICU and non-ICU admitted patients, respectively")
+```
 
 This is perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
 
 P-values and T-values of non-ICU vs ICU patients:
 
-tab.3_cap <- table_nums(name = "tab_3", 
-                        caption = "P- and t-values of the quantitative values in comparison of non-ICU and ICU patients")
-                        
-                     knitr::kable(statresult, "simple"), 
+```{r}
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+load("statresult.rdata")
+
+knitr::kable(table3, caption = "P- and t-values of the quantitative values in comparison of non-ICU and ICU patients")
+```
 
 
 FRÅGA: är p-värdena rimliga tycker du? de är superlåga och min känsla - med 5 hp statistik i ryggen - är att std-avvikelsen är för stor för det?
 
-For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. The proportions are presented in tab.4_cap <- table_nums(name = "tab_4", 
-                        caption = "Proportion of patients admitted to the ICU for all variants of all quuantitative variables")
-                        
-                     knitr::kable(qualitativetable, "simple"), 
+For the qualitative data, the propensity of each parameter to get a patient admitted to the ICU is in relation to the proportion of patients that were admitted to the ICU from the whole TITCO1 data set, about a third. If considerably more than a third of each qualitative parameter are admitted to the ICU, then that parameter is of interest. The proportions are presented in 
+
+```{r}
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+load("qualitativetable.rdata")
+
+knitr::kable(qualitativetable, caption = "Proportion of patients admitted to the ICU for all variants of all quuantitative variables")
+```
+
 
 Results
 =======
