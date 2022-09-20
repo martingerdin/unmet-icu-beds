@@ -53,7 +53,7 @@ Introduction
 ============
 
 NOTE2SELF: för projektredogörelsen feta ut och ha med paragraferna här som temporaries och säg till när de är klara för kommentering intro och metoddelen, 
-Fråga Johanna: 3-5 sidor ja men det är en rekommendation och formatet med omfattande bakgrund passar inte den här typen av studie. jag kan men jag vet inte om det är meningsfullt att producera 2 sidor text baraföratt? I instruktionen skriver KI själva att det är en kontrollmekanism bara "koordinatorn får en uppfattning om progress i projektet,". Kan jag bara motivera utformningen så är jag inte orolig
+Fråga Johanna: 3-5 sidor ja men det är en rekommendation och formatet med omfattande bakgrund passar inte den här typen av studie. jag kan men jag vet inte om det är meningsfullt att producera 2 sidor text baraföratt? I instruktionen skriver KI själva att det är en kontrollmekanism bara "koordinatorn får en uppfattning om progress i projektet,". Kan jag bara motivera utformningen så är jag inte orolig jag la frågan till kursadmin
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
@@ -66,7 +66,7 @@ Trauma/Injury is a substantial global health problem that disproportionately aff
 
 In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
 
-Existing TQIP often originate in high-income countries, and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC). This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The study shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
+Existing TQIP often originate in high-income countries (HIC), and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC) @frailty @gunshots  @onemilliondead. Applying TQIPs outside of their original context or even within a subset of it's own origin is difficult even without taking income bracket in account, for instance firearm violence is a considerable bigger portion of trauma patients in some US contexts, than the national average @gunshot. For trauma patients, there exist significant structural differences between HIC and LMIC mainly regarding injury mechanisms and severity, health care resources as well as patient make-up @frailty @indiantrauma @traumaLMIC @onemilliondead. These differences make a direct transferral of HIC TQIP models onto LMIC irrelevant or misleading and there is a need to develop TQIP assessment applicable to local conditions. This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The study shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
 
 Trauma disproportionately affects young, otherwise healthy individuals. They are often the primary breadwinners for their families and therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities. @traumaLMIC
 
@@ -75,7 +75,7 @@ Aim
 -----------
 Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
 
-The theory being examined in this thesis is that there exist subset of the TITCO-I dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
+The theory being examined in this masters thesis is that there exist subset of the TITCO-I dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the IC for lack of such resources. These patients will be identified using propensity score matching. 
 
 The size of this group in relation to the group that were admitted to the ICU indicate the magnitude of the unmet need of ICU beds. If, for every patient that did receive ICU care, there was another patient with similar predictors that wasn’t admitted due to scarcity of ICU resources, that would mean the ICU resources are 50% of what they ought to be.
 
@@ -150,10 +150,9 @@ Because very young and very old patients are so few, they have been grouped toge
 
 Fråga: man har buntat ihop 89+ arna för anonymisering, men 0-åringarna är bara 7 och ganska sårbara indentifieringsmässigt
 
-KOPPAT tills jag förstår och kan omformulera
-Injury descriptors and codes
-A random selection of 1% of injury descriptors entered into each of the variables e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, e_10, e_11, e_12, xray_1, xray_2, xray_3, xray_4, xray_5, xray_6, xray_7, xray_8, xray_9, xray_10, xray_11, fast_1, fast_2, fast_3, fast_4, fast_5, fast_6, fast_7, fast_8, fast_9, fast_10, fast_11, ct_1, ct_2, ct_3, ct_4, ct_5, ct_6, ct_7, ct_8, ct_9, ct_10, ct_11, ct_12, ct_13, op_1, op_2, op_3, op_4, op_5, op_6, op_7, op_8, op_9, op_10, op_11 were set to missing. Corresponding ICD-10 codes were also set to missing. This was done to prevent identification of patients based on the list of recorded injuries.
-KOPPAT
+
+Text based input
+1% of the text-based inputs in ICD code fields and examination or operation findings were randomly deleted to obstruct identification by this variable. 
 
 
 
@@ -313,12 +312,6 @@ knitr::kable(table3, caption = "Means and standard devations of quantitative var
 For many parameters the difference is small, perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
 
 P-values and T-values of non-ICU vs ICU patients:
-
-TASK4SELF: släng upp alla variabler i google sheetset
-.r fil för missing cleaning av titcodatasetet
-onsdag kolla kommentarerna löpande. 
-kolla på textbaserade parametrar
-släng upp alla tasks i slack, och instruera martin och johanna att kommentera i slack
 ```{r}
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
 load("statresult.rdata")
