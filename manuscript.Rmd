@@ -1,7 +1,10 @@
 ---
-title: "Quantifying unmet ICU beds in tertiary hospitals in urban India using Prospective Score Matching "
-output: html_document
+title: 'Quantifying unmet ICU beds in tertiary hospitals in urban India using Prospective
+  Score Matching '
 author: "Maria Eriksson"
+output:
+  word_document: default
+  html_document: default
 bibliography: bibliography.bib
 csl: vancouver.csl
 ---
@@ -25,6 +28,12 @@ reporting of observational studies in epidemiology (STROBE) statement,
 see https://www.strobe-statement.org/. For more explanations see the
 paper Strengthening the Reporting of Observational Studies in
 Epidemiology (STROBE):explanation and elaboration.  -->
+
+Abbreviations
+============
+ER - Emergency room
+HIC - High-income countries
+LMIC - Low- and middle-income countries
 
 <!-- Indicate the study’s design with a commonly used term in the
 title, for example: "Associations between resuscitation interventions
@@ -52,9 +61,10 @@ Conclusion
 Introduction
 ============
 
-NOTE2SELF: för projektredogörelsen feta ut och ha med paragraferna här som temporaries och säg till när de är klara för kommentering intro och metoddelen, 
-Fråga Johanna: 3-5 sidor ja men det är en rekommendation och formatet med omfattande bakgrund passar inte den här typen av studie och det blir ganska tydligt vad du menar med det när jag försöker producera texten. Mina kurskamraters projekt handlar om specifika sjukdomar eller medicinska interventioner eller liknande och då är det naturligt och viktigt att beskriva dem utförligt, men jag har inte riktigt något motsvarande min punchline är just i metoddelen.  Jag skulle kunna skriva ännu mer om indisk traumastatistik, hur dåligt det är med trauma, recycla resonemanget om hur bl.a. motorcykelolyckor har olika karakteristik i Indien vs nordamerika men jag vet inte om det är meningsfullt att producera 2 sidor text baraföratt. 
-I instruktionen skriver KI själva att det är en kontrollmekanism bara "koordinatorn får en uppfattning om progress i projektet,". Kan jag bara motivera utformningen så är jag inte orolig jag la frågan till kursadmin
+<!-- 
+FYI: utmanat volymkraven, de är motstridiga med kravet "Innehåller endast sådan information som är nödvändig för att förstå och motivera studiens syfte och metodik i stort"
+-->
+
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
@@ -63,18 +73,24 @@ should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 
 Background
 ----------
-Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity@traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU@stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
+Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity @traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU @stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
-In order to improve intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The aim of TQIPs is to ensure equivalent care and improve trauma care by developing best practice guidelines@tqip. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
+In order to improve and ensure equivalence of intra-hospital care, trauma quality improvement programs (TQIP) have been developed. TQIP assessments collect trauma data from participating health care providers and apply statistical analysis to the data. The aim is to find discrepancies in treatment for patients presenting with similar conditions. TQIPs aim to ensure equivalent care and improve trauma care by developing best practice guidelines @tqip, and to assert that health care providers provide the same care under same circumstances as their peers do. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
+Fråga: rätt uppfattat? bygger dessa analyser alltid på propensity score matching approach ?
 
-Existing TQIP often originate in high-income countries (HIC), and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC) @frailty @gunshots  @onemilliondead. Applying TQIPs outside of their original context or even within a subset of it's own origin is difficult even without taking income bracket in account, for instance firearm violence is a considerable bigger portion of trauma patients in some US contexts, than the national average @gunshot. For trauma patients, there exist significant structural differences between HIC and LMIC mainly regarding injury mechanisms and severity, health care resources as well as patient make-up @frailty @indiantrauma @traumaLMIC @onemilliondead. These differences make a direct transferral of HIC TQIP models onto LMIC irrelevant or misleading and there is a need to develop TQIP assessment applicable to local conditions. This study aims to make an TQIP assessment in an Indian context to fill part of that knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The study shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
 
-Trauma is a main cause of mortality and morbidity to otherwise healthy and young individuals, and dispropotionately affect this demographic. People in this demographic are also oftentimes the primary or sole breadwinners for their families. Therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities. @traumaLMIC
+Knowlege gap
+------------
+Existing TQIP often originate in high-income countries (HIC), and are either not applicable nor easily transferred to the hospital conditions of low and middle income countries (LMIC) @frailty @gunshot  @onemilliondead. Applying TQIPs outside of their original context or even within a subset of it's own origin is difficult even without taking income bracket in account, for instance firearm violence is a considerable bigger portion of trauma patients in some US contexts, than the national average @gunshot. For trauma patients, there exist significant structural differences between HIC and LMIC. These differences are in factors such as injury mechanisms and severity, health care resources as well as patient make-up @frailty @indiantrauma @traumaLMIC @onemilliondead. One example of this is the differences in helmet use for motorcyclists and their passengers, as well as differences of displacement in vehicle fleets in LMIC versus HIC. These factors have tremendous impact on the type and severity of injuries patients in the ER have, and subsequently on their care and outcome. These differences make a direct transferral of HIC TQIP models onto LMIC irrelevant or misleading and there is a need to develop TQIP assessment applicable to local conditions. 
+
+Trauma is a main cause of mortality and morbidity to otherwise healthy and young individuals, and dispropotionately affect this demographic. People in this demographic are also oftentimes the primary or sole breadwinners for their families. Therefore the detrimental impact of trauma go beyond mortality or substantial loss of disease-free years of life for the affected individuals, it also carries a considerable financial and social harm on their family members and communities @traumaLMIC. .
 
 
 Aim
------------
-Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India by applying propensity score matching.
+----
+Predict the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India.
+
+This study aims to make an TQIP assessment in an Indian context to fill part of the knowledge gap, and to test whether there is merit in the testimony of the Indian colleagues. The TQIP assessment shall propose a scope of the unmet need for ICU beds for trauma patients at tertiary hospitals in urban India. If this analysis indeed indicate a shortage, it can be used to motivate extending ICU resources and reduce preventable trauma morbidity and mortality. 
 
 The theory being examined in this masters thesis is that there exist subset of the TITCO-I dataset that didn't go to the ICU, but are very similar to the patients that did go to the ICU, in the covariates that caused ICU-treated patients to receive this intervention. The thesis is that these patients were not admitted to the ICU only for lack of such resources, not by a medical assessment. In statistics, such a group would be akin to an non-experimental conrol group, and these patients will be identified using propensity score matching. 
 
@@ -95,9 +111,9 @@ Setting
 
 <!-- Describe the setting, locations, and relevant dates, including
 periods of recruitment, exposure, follow-up, and data collection -->
-16 000 patients admitted to four public university hospitals in urban India are included in the TITCO-I v1 dataset. Initially the data set included 16047 patients, but to improve anonymization 47 patients were deleted from the dataset as described in the chapter anonymization. The participating hospitals were King Edward Memorial hospital (KEM) and Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai, Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi and The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata. When the data was collected JPNATC had almost 180 beds in a dedicated trauma centre, KEM had no specific trauma ward and was a tertiary referral hospital, LTMGH had a specific trauma ward with 14 beds and was a tertiary referral public university hospital and SSKM had no specific trauma ward and was a public university tertiary referral hospital.
+16 000 patients admitted to four public university hospitals in urban India are included in the TITCO-I v1 dataset. Initially the data set included 16047 patients, but to improve anonymization 47 patients were deleted from the dataset as described in the chapter anonymization. The participating hospitals were King Edward Memorial hospital (KEM) and Lokmanya Tilak Municipal General Hospital (LTMGH), Mumbai, Jai Prakash Narayan Apex Trauma Center (JPNATC), All India Institute of Medical Sciences, New Delhi and The Institute of Post-Graduate Medical Education and Research and Seth Sukhlal Karnani Memorial Hospital (SSKM), Kolkata. When the data was collected all hospitals were tertiary hospitals. JPNATC had almost 180 beds in a dedicated trauma centre, KEM had no specific trauma ward, LTMGH was a public university hospital with a specific trauma ward with 14 beds and SSKM was a  public university hospital with no specific trauma ward.
 
-The data was collected between July 2013 and December 2015 but the collection period for any individual hospitals did not cover this period.
+The data was collected between July 2013 and December 2015 but the collection period for any individual hospitals did not cover necessarily this whole period.
 
 A dedicated project officer involved in the data collection was on site five days per week, approximately eight hours a day. The project officers covered night, evening and morning shifts in a way so all shift variants were covered every month of collection. Project officers worked in the area where trauma patients arrived to the hospital and collected data for patients arriving during their shift through direct observation. If the officer observed an examination being performed but not documented in the patient records were allowed to ask health care staff for the result. If a trauma patient arrived when a project officer was not on site, they were identified from the log books of the nurses on staff in the emergency department and their data was collected from patient records. 
 
@@ -179,7 +195,6 @@ knitr::kable(table1_1, caption = "Data types collected in the TITCO-I dataset")
 
 datatvätt:
 FRÅGA: quantitativa variablerna har många NA som jag tror egentligen är NO, ex om pat har haft syrgas vid spO2 mätning. kan jag tänka lite fritt här när det känns uppenbart eller ska jag förankra? också finns det ex obs där numeriska värdet för spO2 saknas men ändå data yes/no om pat fått syrgas och jag vet inte om sån data är meningsfull?
-FRÅGA: vad betyder GCS verbal V1?  det är inte felregistrerat det är ett alternativ i codebook. jag har hittat ett förslag om att det är pat som inte kan ge verbalt svar pga intub eller surgical airway, men det finns pat som har varken eller och GCS verbalt = 1v 
 
 
 The quantitative data include recorded parameters such as vital parameters, lab results, GCS total score and cumulative time in surgery or ICU, if applicable. Measurement or assessment techniques are standardized.  
