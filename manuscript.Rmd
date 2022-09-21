@@ -1,10 +1,10 @@
 ---
-title: 'Quantifying unmet ICU beds in tertiary hospitals in urban India using Prospective
+title: 'Quantifying unmet ICU beds in tertiary hospitals in urban India using Propensity
   Score Matching '
 author: "Maria Eriksson"
 output:
-  word_document: default
   html_document: default
+  word_document: default
 bibliography: bibliography.bib
 csl: vancouver.csl
 ---
@@ -73,7 +73,9 @@ should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 
 Background
 ----------
-Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity @traumaLMIC. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU @stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
+Trauma/Injury is a substantial global health problem that disproportionately affects low and middle-income countries (LMIC), resulting in significant mortality and morbidity @traumaLMIC. Despite having only 1% of the global vehicle fleet, a disproportionate 10% of global traffic casualties occur in India @indiantrauma. The annual mortality from injury in India amount to one million casualties @onemilliondead. Half of trauma mortality in India occur in-hospital, and in-hospital trauma mortality in Indian hospitals was double that of high-income countries @indiantrauma. 
+
+Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but aren’t because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU @stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
 In order to improve and ensure equivalence of intra-hospital care, trauma quality improvement programs (TQIP) have been developed. TQIP assessments collect trauma data from participating health care providers and apply statistical analysis to the data. The aim is to find discrepancies in treatment for patients presenting with similar conditions. TQIPs aim to ensure equivalent care and improve trauma care by developing best practice guidelines @tqip, and to assert that health care providers provide the same care under same circumstances as their peers do. TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip.
 Fråga: rätt uppfattat? bygger dessa analyser alltid på propensity score matching approach ?
@@ -296,7 +298,7 @@ Predictor variables will be selected using both clinical judgement and data anal
 
 Clinical experience compels inclusion of vital parameters, irregardless if there is any statistical motivation. Such variables are heart rate, systolic blood pressure and respiration rate. 
 
-The TITCO-I data set is analyzed mathemathically in pursuit of suitable predictor variables. The data set is divided into two subgroups, the cohort that were admitted to the ICU and the cohort that wasn't. In comparison between these subgroups, identify variables that distinguishes the former from the latter. 
+The TITCO-I data set is analyzed mathemathically in pursuit of suitable predictor variables. The data set is divided into two subgroups, the cohort that were admitted to the ICU and the cohort that wasn't. In comparison between these subgroups, identify variables that distinguishes the former from the latter. The quantitative and qualitative properties were considered separately. 
 
 Mean and standard deviation for the quantitative data is analysed for the ICU and non-ICU cohort respectively. p- and t-values when comparing these cohorts to show if there are any statistically significant differences.
 
@@ -327,7 +329,7 @@ load("table3.rdata")
 knitr::kable(table3, caption = "Means and standard devations of quantitative variables of ICU and non-ICU admitted patients, respectively")
 ```
 
-For many parameters the difference is small, perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, considered individually, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
+For many parameters the difference is small, perhaps because of a crowd out effect. For instance, the total Glascow coma scale score is high and quite similar for the non-ICU subset versus the ICU subset, the difference between the average of the groups is 2 points. However, low scores in either category is a high propensity to admit a patient to the ICU, as demonstrated in the comparison of quantitative parameters.
 
 P-values and T-values of non-ICU vs ICU patients:
 ```{r}
