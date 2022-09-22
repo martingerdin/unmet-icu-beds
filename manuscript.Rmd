@@ -66,10 +66,6 @@ Conclusion
 Introduction
 ============
 
-<!-- 
-FYI: utmanat volymkraven, de är motstridiga med kravet "Innehåller endast sådan information som är nödvändig för att förstå och motivera studiens syfte och metodik i stort"
--->
-
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
@@ -87,7 +83,7 @@ Trauma is a main cause of mortality and morbidity to otherwise healthy and young
 Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but are not because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU @stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
 A diverse mix of public, for-profit and not-for-profit private actors provide health services in India. According to a WHO 2022 report, India has 76 709 non-ventilator supported and 39 476 ventilator-supported ICU beds @ICUbeds. This is 8.2 per 100 000 inhabitants.
-This same report also highlight the probable shortage of ICU resources in India, though in the context of the COVID-19 pandemic.
+The WHO report also highlight the probable shortage of ICU resources in India, though in the context of the COVID-19 pandemic.
 
 Methods to examine trauma care and ensure equivalence
 -----------------------------------------------------
