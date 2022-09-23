@@ -66,6 +66,7 @@ Conclusion
 Introduction
 ============
 
+
 <!-- Explain the scientific background and rationale for the
 investigation being reported. End by stating the aim or specific
 objectives, including any prespecified hypotheses. The introduction
@@ -82,24 +83,19 @@ Trauma is a main cause of mortality and morbidity to otherwise healthy and young
 
 Health care professionals in many LMIC testify that their medical assessment oftentimes is that a trauma patient should be admitted to the ICU, but are not because such resources are scarce, overloaded and unavailable. Their medical judgement is that the lives of these patients were salvageable, and that these patients died as a direct result of not being admitted to the ICU @stuffLMICdoctorssay. Globally, an estimated two million lives could be saved annually, if the appropriate and timely trauma care provided by hospitals in many high-income countries were available and provided in low to-middle-income countries (LMICs) @livessaved
 
-A diverse mix of public, for-profit and not-for-profit private actors provide health services in India. According to a WHO 2022 report, India has 76 709 non-ventilator supported and 39 476 ventilator-supported ICU beds @ICUbeds. This is 8.2 per 100 000 inhabitants.
-The WHO report also highlight the probable shortage of ICU resources in India, though in the context of the COVID-19 pandemic.
+A diverse mix of public, for-profit and not-for-profit private actors provide health services in India, where private providers dominate. According to a WHO 2022 report, India has 76 709 non-ventilator supported and 39 476 ventilator-supported ICU beds @ICUbeds. 
 
 Methods to examine trauma care and ensure equivalence
 -----------------------------------------------------
 In order to improve and ensure equivalence of intra-hospital care, trauma quality improvement programs (TQIP) have been developed. The pilot and most notable example is the TQIP developed by the American College of Surgeons ACS. Since the implementation of the ACS pilot, TQIP has evolved to a broad term that include many kinds of processes to improve the quality of trauma care, such as mortality and morbidity conferences, using audit filters or comparing risk adjusted outcomes over time and between centres. The aim is to find discrepancies in treatment for patients presenting with similar conditions. TQIPs aim to ensure patients get equivalent care within and across hospitals, to benchmark performance of health care providers versus their peers and to improve trauma care by developing best practice guidelines @tqip. 
 
-One aspect of TQIP assessments is to collect trauma data from participating health care providers and apply statistical analysis to the data. From this data, TQIPs utilizes a retrospective cohort study, analysing the current of trauma care patients and post-fact attempting to determine the appropriate level of care for each patient. From these analyses many aspects of trauma care can be improved and optimized, such as determining the appropriate amount of ICU beds and other trauma care resources @tqip. 
-
-It is tempting to apply existing models of TQIP assessments on Indian trauma data to identify causes of the observed disparities in trauma care performance in HIC and LMIC, and propose measures to harmonize performance. Unfortunately as TQIP often originate in high-income countries (HIC), they are either not applicable nor easily transferred to the hospital conditions of LMIC @frailty @gunshot  @onemilliondead. Applying TQIPs outside of their original context or even within a subset of its own origin is difficult even without taking income bracket in account, for instance firearm violence is a considerable bigger portion of trauma patients in some US contexts, than the national average @gunshot. For trauma patients, there exist significant structural differences between HIC and LMIC. These differences are in factors such as injury mechanisms and severity, health care resources as well as patient make-up @frailty @indiantrauma @traumaLMIC @onemilliondead. One example of this is the differences in helmet use for motorcyclists and their passengers, as well as differences of displacement in vehicle fleets in LMIC versus HIC. These factors have tremendous impact on the type and severity of injuries patients in the ER have, and subsequently on their care and outcome. These differences make a direct transferral of HIC TQIP models onto LMIC irrelevant or misleading and there is a need to develop TQIP assessment applicable to local conditions.
-
-Kommentar på Mgerdin kommentar: jag snodde din definition här. Jag håller med om att detta inte är den mest relevanta informationen men för "kontrollmekanism"-arbetet som ska in på måndag här har KI en checklista och de vill ha 3-5 sidor bakgrund trots att vi jobbar med max 1-1.5 så jag måste feta ut. Detsamma för kommentaren i Aim jag är medveten om att det är felplacerat eller irrelevant.
+TQIP often originate in high-income countries (HIC), they are either not applicable nor easily transferred to the hospital conditions of LMIC @frailty @gunshot  @onemilliondead. For trauma patients, there exist significant structural differences between HIC and LMIC. These differences are in factors such as injury mechanisms and severity, health care resources as well as patient make-up @frailty @indiantrauma @traumaLMIC @onemilliondead. These differences make a direct transferral of HIC TQIP models onto LMIC irrelevant or misleading and there is a need to develop TQIP assessment applicable to local conditions.
 
 Knowlege gap
 ------------
-There are compelling reasons to believe there is a shortage of ICU beds in India, but the scope of this shortage and the potential for reduction of trauma mortality if this shortage would be remedied is unknown. 
+There are compelling reasons to believe there is a shortage of ICU beds in India, but the scope of this shortage as well as the potential for reduction of trauma mortality if this shortage would be remedied is unknown.
 
-WHO and local health care workers believe there is a shortage of ICU beds in Indian hospitals, and that the lives of many patients would have been salvageable if the appropriate ICU resources had been available. The differences of in-hospital trauma mortality in Indian hospitals was double that of high-income countriesin, and part of this difference could be explained by a shortage of ICU beds in India @indiantrauma 
+WHO and local health care workers believe there is a shortage of ICU beds in Indian hospitals, and that the lives of many patients would have been salvageable if the appropriate ICU resources had been available @ICUbeds. The differences of in-hospital trauma mortality in Indian hospitals was double that of high-income countries, and part of this difference could be explained by a shortage of ICU beds in India @indiantrauma .
 
 
 Aim
