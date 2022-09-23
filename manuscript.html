@@ -12,7 +12,7 @@
 <meta name="author" content="Maria Eriksson" />
 
 
-<title>Quantifying unmet ICU beds in tertiary hospitals in urban India using Prospective Score Matching</title>
+<title>Quantifying unmet ICU beds in tertiary hospitals in urban India using Propensity Score Matching</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -385,7 +385,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">Quantifying unmet ICU beds in tertiary
-hospitals in urban India using Prospective Score Matching</h1>
+hospitals in urban India using Propensity Score Matching</h1>
 <h4 class="author">Maria Eriksson</h4>
 
 </div>
@@ -443,47 +443,49 @@ should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 <h2>Background</h2>
 <p>Trauma/Injury is a substantial global health problem that
 disproportionately affects low and middle-income countries (LMIC),
-resulting in significant mortality and <a href="mailto:morbidity@traumaLMIC" class="email">morbidity@traumaLMIC</a>. The annual mortality from injury
-in India amount to one million casualties <span class="citation">(1)</span>. Half of trauma mortality in India occur
+resulting in significant mortality and morbidity <span class="citation">(1)</span>. Despite having only 1% of the global
+vehicle fleet, a disproportionate 10% of global traffic casualties occur
+in India <span class="citation">(2)</span>. The annual mortality from
+injury in India amount to one million casualties <span class="citation">(3)</span>. Half of trauma mortality in India occur
 in-hospital, and in-hospital trauma mortality in Indian hospitals was
-double that of high-income countries <span class="citation">(2)</span>.
-Health care professionals in many LMIC testify that their medical
+double that of high-income countries <span class="citation">(2)</span>.</p>
+<p>Health care professionals in many LMIC testify that their medical
 assessment oftentimes is that a trauma patient should be admitted to the
 ICU, but aren’t because such resources are scarce, overloaded and
 unavailable. Their medical judgement is that the lives of these patients
 were salvageable, and that these patients died as a direct result of not
-being admitted to the <a href="mailto:ICU@stuffLMICdoctorssay" class="email">ICU@stuffLMICdoctorssay</a>. Globally, an estimated two
-million lives could be saved annually, if the appropriate and timely
-trauma care provided by hospitals in many high-income countries were
-available and provided in low to-middle-income countries (LMICs) <span class="citation">(3)</span></p>
+being admitted to the ICU <span class="citation">(4)</span>. Globally,
+an estimated two million lives could be saved annually, if the
+appropriate and timely trauma care provided by hospitals in many
+high-income countries were available and provided in low
+to-middle-income countries (LMICs) <span class="citation">(5)</span></p>
 <p>In order to improve and ensure equivalence of intra-hospital care,
 trauma quality improvement programs (TQIP) have been developed. TQIP
 assessments collect trauma data from participating health care providers
 and apply statistical analysis to the data. The aim is to find
 discrepancies in treatment for patients presenting with similar
 conditions. TQIPs aim to ensure equivalent care and improve trauma care
-by developing best practice <a href="mailto:guidelines@tqip" class="email">guidelines@tqip</a>, and to assert that health care
-providers provide the same care under same circumstances as their peers
-do. TQIPs utilizes a retrospective cohort study, analysing the current
-of trauma care patients and post-fact attempting to determine the
-appropriate level of care for each patient. From these analyses many
-aspects of trauma care can be improved and optimized, such as
-determining the appropriate amount of ICU beds and other trauma care
-resources <span class="citation">(4)</span>. Fråga: rätt uppfattat?
-bygger dessa analyser alltid på propensity score matching approach ?</p>
+by developing best practice guidelines <span class="citation">(6)</span>, and to assert that health care providers
+provide the same care under same circumstances as their peers do. TQIPs
+utilizes a retrospective cohort study, analysing the current of trauma
+care patients and post-fact attempting to determine the appropriate
+level of care for each patient. From these analyses many aspects of
+trauma care can be improved and optimized, such as determining the
+appropriate amount of ICU beds and other trauma care resources <span class="citation">(6)</span>. Fråga: rätt uppfattat? bygger dessa
+analyser alltid på propensity score matching approach ?</p>
 </div>
 <div id="knowlege-gap" class="section level2">
 <h2>Knowlege gap</h2>
 <p>Existing TQIP often originate in high-income countries (HIC), and are
 either not applicable nor easily transferred to the hospital conditions
-of low and middle income countries (LMIC) <span class="citation">(5)</span> <span class="citation">(<strong>gunshots?</strong>)</span> <span class="citation">(1)</span>. Applying TQIPs outside of their original
+of low and middle income countries (LMIC) <span class="citation">(7)</span> <span class="citation">(8)</span> <span class="citation">(3)</span>. Applying TQIPs outside of their original
 context or even within a subset of it’s own origin is difficult even
 without taking income bracket in account, for instance firearm violence
 is a considerable bigger portion of trauma patients in some US contexts,
-than the national average <span class="citation">(6)</span>. For trauma
+than the national average <span class="citation">(8)</span>. For trauma
 patients, there exist significant structural differences between HIC and
 LMIC. These differences are in factors such as injury mechanisms and
-severity, health care resources as well as patient make-up <span class="citation">(5)</span> <span class="citation">(2)</span> <span class="citation">(7)</span> <span class="citation">(1)</span>. One
+severity, health care resources as well as patient make-up <span class="citation">(7)</span> <span class="citation">(2)</span> <span class="citation">(1)</span> <span class="citation">(3)</span>. One
 example of this is the differences in helmet use for motorcyclists and
 their passengers, as well as differences of displacement in vehicle
 fleets in LMIC versus HIC. These factors have tremendous impact on the
@@ -498,7 +500,7 @@ or sole breadwinners for their families. Therefore the detrimental
 impact of trauma go beyond mortality or substantial loss of disease-free
 years of life for the affected individuals, it also carries a
 considerable financial and social harm on their family members and
-communities. <span class="citation">(7)</span>.</p>
+communities <span class="citation">(1)</span>. .</p>
 </div>
 <div id="aim" class="section level2">
 <h2>Aim</h2>
@@ -932,7 +934,8 @@ heart rate, systolic blood pressure and respiration rate.</p>
 suitable predictor variables. The data set is divided into two
 subgroups, the cohort that were admitted to the ICU and the cohort that
 wasn’t. In comparison between these subgroups, identify variables that
-distinguishes the former from the latter.</p>
+distinguishes the former from the latter. The quantitative and
+qualitative properties were considered separately.</p>
 <p>Mean and standard deviation for the quantitative data is analysed for
 the ICU and non-ICU cohort respectively. p- and t-values when comparing
 these cohorts to show if there are any statistically significant
@@ -1213,10 +1216,9 @@ and twenty four hours</td>
 <p>For many parameters the difference is small, perhaps because of a
 crowd out effect. For instance, the total Glascow coma scale score is
 high and quite similar for the non-ICU subset versus the ICU subset, the
-difference between the average of the groups is 2 points. However,
-considered individually, low scores in either category is a high
-propensity to admit a patient to the ICU, as demonstrated in the
-comparison of quantitative parameters.</p>
+difference between the average of the groups is 2 points. However, low
+scores in either category is a high propensity to admit a patient to the
+ICU, as demonstrated in the comparison of quantitative parameters.</p>
 <p>P-values and T-values of non-ICU vs ICU patients:</p>
 <pre class="r"><code>setwd(&quot;C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds&quot;)
 load(&quot;statresult.rdata&quot;)
@@ -2526,12 +2528,11 @@ Discuss the generalisability (external validity) of the study results
 <h1>References</h1>
 <!-- Do not edit by hand, references will be inserted and formatted automatically once you knit this document -->
 <div id="refs" class="references csl-bib-body">
-<div id="ref-onemilliondead" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Bhandarkar P, Patil P, Soni KD, O’Reilly GM,
-Dharap S, Mathew J, et al. An analysis of 30-day in-hospital trauma
-mortality in four urban university hospitals using the australia india
-trauma registry. World Journal of Surgery [Internet]. 2020
-Oct;45(2):380–9. Available from: <a href="https://doi.org/10.1007/s00268-020-05805-7">https://doi.org/10.1007/s00268-020-05805-7</a></div>
+<div id="ref-traumaLMIC" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Laytin AD, Debebe F. The burden of injury in
+low-income and middle-income countries: Knowing what we know,
+recognising what we don’t know. Emergency Medicine Journal [Internet].
+2019 Apr;emermed-2019-208514. Available from: <a href="https://doi.org/10.1136/emermed-2019-208514">https://doi.org/10.1136/emermed-2019-208514</a></div>
 </div>
 <div id="ref-indiantrauma" class="csl-entry">
 <div class="csl-left-margin">2. </div><div class="csl-right-inline">Roy
@@ -2540,37 +2541,44 @@ in-hospital trauma mortality in four urban university hospitals using an
 indian trauma registry. World Journal of Surgery [Internet]. 2016
 Feb;40(6):1299–307. Available from: <a href="https://doi.org/10.1007/s00268-016-3452-y">https://doi.org/10.1007/s00268-016-3452-y</a></div>
 </div>
+<div id="ref-onemilliondead" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Bhandarkar P, Patil P, Soni KD, O’Reilly GM,
+Dharap S, Mathew J, et al. An analysis of 30-day in-hospital trauma
+mortality in four urban university hospitals using the australia india
+trauma registry. World Journal of Surgery [Internet]. 2020
+Oct;45(2):380–9. Available from: <a href="https://doi.org/10.1007/s00268-020-05805-7">https://doi.org/10.1007/s00268-020-05805-7</a></div>
+</div>
+<div id="ref-stuffLMICdoctorssay" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Malelelo-Ndou H, Ramathuba DU, Netshisaulu KG.
+Challenges experienced by health care professionals working in
+resource-poor intensive care settings in the limpopo province of south
+africa. Curationis [Internet]. 2019 Mar;42(1). Available from: <a href="https://doi.org/10.4102/curationis.v42i1.1921">https://doi.org/10.4102/curationis.v42i1.1921</a></div>
+</div>
 <div id="ref-livessaved" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Roy
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Roy
 N, Gerdin M, Ghosh S, Gupta A, Kumar V, Khajanchi M, et al. 30-day
 in-hospital trauma mortality in four urban university hospitals using an
 indian trauma registry. World Journal of Surgery [Internet]. 2016
 Feb;40(6):1299–307. Available from: <a href="https://doi.org/10.1007/s00268-016-3452-y">https://doi.org/10.1007/s00268-016-3452-y</a></div>
 </div>
 <div id="ref-tqip" class="csl-entry">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Newgard CD, Fildes JJ, Wu L, Hemmila MR, Burd
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Newgard CD, Fildes JJ, Wu L, Hemmila MR, Burd
 RS, Neal M, et al. Methodology and analytic rationale for the american
 college of surgeons trauma quality improvement program. Journal of the
 American College of Surgeons [Internet]. 2013 Jan;216(1):147–57.
 Available from: <a href="https://doi.org/10.1016/j.jamcollsurg.2012.08.017">https://doi.org/10.1016/j.jamcollsurg.2012.08.017</a></div>
 </div>
 <div id="ref-frailty" class="csl-entry">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">Tracy BM, Adams MA, Schenker ML, Gelbard RB.
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Tracy BM, Adams MA, Schenker ML, Gelbard RB.
 The 5 and 11 factor modified frailty indices are equally effective at
 outcome prediction using <span>TQIP</span>. Journal of Surgical Research
 [Internet]. 2020 Nov;255:456–62. Available from: <a href="https://doi.org/10.1016/j.jss.2020.05.090">https://doi.org/10.1016/j.jss.2020.05.090</a></div>
 </div>
 <div id="ref-gunshot" class="csl-entry">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">Heaney JB, Guidry C, Simms E, Turney J, Meade
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Heaney JB, Guidry C, Simms E, Turney J, Meade
 P, Hunt JP, et al. To <span>TQIP</span> or not to <span>TQIP</span>?
 That is the question. The American Surgeon [Internet]. 2014
 Apr;80(4):386–90. Available from: <a href="https://doi.org/10.1177/000313481408000422">https://doi.org/10.1177/000313481408000422</a></div>
-</div>
-<div id="ref-traumaLMIC" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Laytin AD, Debebe F. The burden of injury in
-low-income and middle-income countries: Knowing what we know,
-recognising what we don’t know. Emergency Medicine Journal [Internet].
-2019 Apr;emermed-2019-208514. Available from: <a href="https://doi.org/10.1136/emermed-2019-208514">https://doi.org/10.1136/emermed-2019-208514</a></div>
 </div>
 </div>
 </div>

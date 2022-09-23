@@ -20,7 +20,9 @@
 ## clean R session.
 #noacsr::source_all_functions()
 
-setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+#setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+
+setwd("C:/Users/maria/Downloads/unmet-ICU-beds")
 
 library(tidyverse)
 library(dplyr)
@@ -80,7 +82,7 @@ for (a in 1:columncount) {
   
   
 }
-
+#ändra något
 
 df_t <- data.table::transpose(quantitativelong)
 
