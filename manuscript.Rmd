@@ -277,7 +277,6 @@ There are some variables that should reasonably have been collected and document
 
 All patients with incomplete observations for any predictors will be discarded. For relevant qualitative variables, missing data did not automatically warrant dismissal, if the missing data could be indirectly proven. For example if the quantitative yes/no for an examination like a CT scan was missing, it was deemed a 'yes' if there was a CT scan result recorded. If both were missing, the patient data was dismissed.
 All vital parameters are considered mandatory, irregardless of patient condition so patients without data of heart rate, systolic blood pressure or respiration rate at any time of their hospital stay, have been discarded.  
-FRÅGA: right?
 
 All quantitative data from the original dataset that were entered as zero but where a zero value is physiologically impossible were replaced with NA values. Zero values for variables where it is possible to have zero values, such as respiration rate and heart rate were left as zeroes to not tamper with the data, although a zero value indicate that the variable probably was not measured. These amount to 250 and 155 entries respectively for the first observation within an hour and less than 100 for both for the second observation after 24 h, so the choice to include or exclude these observations won’t skew the data considerably. 
 
