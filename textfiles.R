@@ -145,6 +145,7 @@ extsort=print(extdf[order(extdf$Freq, decreasing = TRUE), ]   )
 
 present <- data.frame(xraysort[1:50,1:2],fastsort[1:50,1:2],opsort[1:50,1:2],ctsort[1:50,1:2],extsort[1:50,1:2])
 
+
 write.csv(present,"present.csv")
 #okej nu har vi en matris med alla x-ray-kolumner
 #borde kunna räkna nu
