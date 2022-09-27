@@ -20,20 +20,20 @@
 ## clean R session.
 #noacsr::source_all_functions()
 
-#setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
+setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
 
-setwd("C:/Users/maria/Downloads/unmet-ICU-beds")
+#setwd("C:/Users/maria/Downloads/unmet-ICU-beds")
 
 library(tidyverse)
 library(dplyr)
 library(tableone)
 
 ## Import data
-headerproperties <- read.csv("headerproperties.csv")
-titcodata <- read.csv("titcodata.csv")
-#jag har manuellt ändrat och städat lite i dessa så jag sparar dem så jag kan committa dem:
-save(headerproperties, file = "headerproperties.RData")
-save(titcodata, file = "titcodata.RData")
+headerproperties <- read.csv("headerpropertieswtimers.csv")
+titcodata <- read.csv("titcodatawtimers.csv")
+#jag har manuellt ändrat och städat lite i dessa så jag sparar dem så jag kan committa dem
+save(headerproperties, file = "headerpropertieswtimers.RData")
+save(titcodata, file = "titcodatawtimers.RData")
 headerrows <- head(headerproperties)
 
 #FRÅGA: jag kan inte hitta hur man definierar eller filtrerar på row headers, men jag kan göra det här superjobbiga sättet
@@ -90,6 +90,9 @@ df_t <- data.table::transpose(quantitativelong)
 statresult<-data.frame(df_t,pvalues,tvalues) #jag vet inte hur jag får headers att stå p och t-värde, men det blir en tabell
 colnames(statresult)<-data.frame("variable short","p-värde","t-värde")
 
+table4<-data.frame(pvalues,tvalues) #jag vet inte hur jag får headers att stå p och t-värde, men det blir en tabell
+colnames(table4)<-data.frame("p-värde","t-värde")
+
 b=quantitatestatlicu[["ContTable"]][["Overall"]]
 myDf <- as.data.frame(b)
 ICU_mean=myDf$mean
@@ -109,6 +112,9 @@ mean_diffdf<- as.data.frame(mean_diff)
 #det här är mean och std av ICU vs no-ICU
 table3<- data.frame(df_t,myDfmeanlicu,myDfsdlicu,myDfmeannolicu,myDfsdnolicu, mean_diffdf)
 
+table5=cbind(table3,table4)
+
 
 save(table3, file = "table3.RData")
 save(statresult, file = "statresult.RData")
+save(table5, file = "table5.RData")
