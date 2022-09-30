@@ -6,6 +6,10 @@ library(tidyverse)
 library(dplyr)
 library(tableone)
 
+headerproperties <- read.csv("headerpropertiestrans.csv") #från rad 70 har datan fär "type" hamnat i "note"-kolumnen. dessutom är spo2_o2_1 och 2 markerade som kvantitativa men de är Y/n så det har jag löst manuellt
+titcodata <- read.csv("titcodatafull.csv") #untampered version
+icdcodes <- read.csv("icdcodes.csv") #icd bibba
+
 for (b in 1:3) {
   titcodata <- read.csv("titcodatafull.csv")
   if (b==1) {
@@ -237,29 +241,41 @@ for (c in 1:nrow(xraysortICU)) {
        if (str1 == str2) {
          frequencies[c,1]=str1
          frequencies[c,2]=strfreqICU
+         strfreqTITCO=as.numeric(strfreqTITCO)
+         frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+         strfreqnoICU=strfreqTITCO-strfreqICU
+         strfreqICU=as.numeric(strfreqICU)
+         strfreqnoICU=as.numeric(strfreqnoICU)
+         if (strfreqnoICU>0) {
+         prop=strfreqICU/strfreqnoICU
+         }
+         if (strfreqnoICU==0) {
+           prop=0
+         }
+         frequencies[c,5]=prop
          frequencies[c,4]=strfreqTITCO
        }
       
       #hitta på vilken row denna finns i noICU ICD rad
-      findrow= which(xraysortnoICU$Var1 == str1, arr.ind = TRUE)
-      #översätt till ICD-kod
-      str2=xraysortnoICU[findrow,1]
-      str2 = as.character(str2) #byt till rätt form
-      strfreqnoICU=xraysortnoICU[c,2]
-      
-      if (length(str2>0)){
-      if (str1 == str2) {
-        frequencies[c,3]=strfreqnoICU
-        prop=strfreqICU/strfreqnoICU
-        frequencies[c,5]=prop
-      }
+      # findrow= which(xraysortnoICU$Var1 == str1, arr.ind = TRUE)
+      # #översätt till ICD-kod
+      # str2=xraysortnoICU[findrow,1]
+      # str2 = as.character(str2) #byt till rätt form
+      # strfreqnoICU=xraysortnoICU[c,2]
+      # 
+      # if (length(str2>0)){
+      # if (str1 == str2) {
+      #   frequencies[c,3]=strfreqnoICU
+      #   prop=strfreqICU/strfreqnoICU
+      #   frequencies[c,5]=prop
+      # }
      #insert some proportions
       xrayed= titcodata %>% filter(grepl('Yes', titcodata$xray)) 
       licupat=nrow(licu)
   
         
         
-        }
+        # }
 
 }
 
@@ -286,29 +302,41 @@ for (c in 1:nrow(extsortICU)) {
   if (str1 == str2) {
     frequencies[c,1]=str1
     frequencies[c,2]=strfreqICU
+    strfreqTITCO=as.numeric(strfreqTITCO)
+    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    strfreqnoICU=strfreqTITCO-strfreqICU
+    strfreqICU=as.numeric(strfreqICU)
+    strfreqnoICU=as.numeric(strfreqnoICU)
+    if (strfreqnoICU>0) {
+      prop=strfreqICU/strfreqnoICU
+    }
+    if (strfreqnoICU==0) {
+      prop=0
+    }
+    frequencies[c,5]=prop
     frequencies[c,4]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
-  findrow= which(extsortnoICU$Var1 == str1, arr.ind = TRUE)
-  #översätt till ICD-kod
-  str2=extsortnoICU[findrow,1]
-  str2 = as.character(str2) #byt till rätt form
-  strfreqnoICU=extsortnoICU[c,2]
-  
-  if (length(str2>0)){
-    if (str1 == str2) {
-      frequencies[c,3]=strfreqnoICU
-      prop=strfreqICU/strfreqnoICU
-      frequencies[c,5]=prop
-    }
+  # findrow= which(extsortnoICU$Var1 == str1, arr.ind = TRUE)
+  # #översätt till ICD-kod
+  # str2=extsortnoICU[findrow,1]
+  # str2 = as.character(str2) #byt till rätt form
+  # strfreqnoICU=extsortnoICU[c,2]
+  # 
+  # if (length(str2>0)){
+  #   if (str1 == str2) {
+  #     frequencies[c,3]=strfreqnoICU
+  #     prop=strfreqICU/strfreqnoICU
+  #     frequencies[c,5]=prop
+  #   }
     #insert some proportions
     #exted= titcodata %>% filter(grepl('Yes', titcodata$xray)) 
     #licupat=nrow(licu)
     
     
     
-  }
+  # }
   
 }
 
@@ -333,29 +361,41 @@ for (c in 1:nrow(opsortICU)) {
   if (str1 == str2) {
     frequencies[c,1]=str1
     frequencies[c,2]=strfreqICU
+    strfreqTITCO=as.numeric(strfreqTITCO)
+    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    strfreqnoICU=strfreqTITCO-strfreqICU
+    strfreqICU=as.numeric(strfreqICU)
+    strfreqnoICU=as.numeric(strfreqnoICU)
+    if (strfreqnoICU>0) {
+      prop=strfreqICU/strfreqnoICU
+    }
+    if (strfreqnoICU==0) {
+      prop=0
+    }
+    frequencies[c,5]=prop
     frequencies[c,4]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
-  findrow= which(opsortnoICU$Var1 == str1, arr.ind = TRUE)
-  #översätt till ICD-kod
-  str2=opsortnoICU[findrow,1]
-  str2 = as.character(str2) #byt till rätt form
-  strfreqnoICU=opsortnoICU[c,2]
-  
-  if (length(str2>0)){
-    if (str1 == str2) {
-      frequencies[c,3]=strfreqnoICU
-      prop=strfreqICU/strfreqnoICU
-      frequencies[c,5]=prop
-    }
+  # findrow= which(opsortnoICU$Var1 == str1, arr.ind = TRUE)
+  # #översätt till ICD-kod
+  # str2=opsortnoICU[findrow,1]
+  # str2 = as.character(str2) #byt till rätt form
+  # strfreqnoICU=opsortnoICU[c,2]
+  # 
+  # if (length(str2>0)){
+  #   if (str1 == str2) {
+  #     frequencies[c,3]=strfreqnoICU
+  #     prop=strfreqICU/strfreqnoICU
+  #     frequencies[c,5]=prop
+  #   }
     #insert some proportions
     #oped= titcodata %>% filter(grepl('Yes', titcodata$xray)) 
     #licupat=nrow(licu)
     
     
     
-  }
+  # }
   
 }
 
@@ -380,29 +420,41 @@ for (c in 1:nrow(ctsortICU)) {
   if (str1 == str2) {
     frequencies[c,1]=str1
     frequencies[c,2]=strfreqICU
+    strfreqTITCO=as.numeric(strfreqTITCO)
+    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    strfreqnoICU=strfreqTITCO-strfreqICU
+    strfreqICU=as.numeric(strfreqICU)
+    strfreqnoICU=as.numeric(strfreqnoICU)
+    if (strfreqnoICU>0) {
+      prop=strfreqICU/strfreqnoICU
+    }
+    if (strfreqnoICU==0) {
+      prop=0
+    }
+    frequencies[c,5]=prop
     frequencies[c,4]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
   findrow= which(ctsortnoICU$Var1 == str1, arr.ind = TRUE)
-  #översätt till ICD-kod
-  str2=ctsortnoICU[findrow,1]
-  str2 = as.character(str2) #byt till rätt form
-  strfreqnoICU=ctsortnoICU[c,2]
+  # #översätt till ICD-kod
+  # str2=ctsortnoICU[findrow,1]
+  # str2 = as.character(str2) #byt till rätt form
+  # strfreqnoICU=ctsortnoICU[c,2]
   
-  if (length(str2>0)){
-    if (str1 == str2) {
-      frequencies[c,3]=strfreqnoICU
-      prop=strfreqICU/strfreqnoICU
-      frequencies[c,5]=prop
-    }
+  # if (length(str2>0)){
+  #   if (str1 == str2) {
+  #     frequencies[c,3]=strfreqnoICU
+  #     prop=strfreqICU/strfreqnoICU
+  #     frequencies[c,5]=prop
+  #   }
     #insert some proportions
     #oped= titcodata %>% filter(grepl('Yes', titcodata$xray)) 
     #licupat=nrow(licu)
     
     
     
-  }
+  # }
   
 }
 
@@ -427,29 +479,43 @@ for (c in 1:nrow(fastsortICU)) {
   if (str1 == str2) {
     frequencies[c,1]=str1
     frequencies[c,2]=strfreqICU
+    strfreqTITCO=as.numeric(strfreqTITCO)
+    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    strfreqnoICU=strfreqTITCO-strfreqICU
+    strfreqICU=as.numeric(strfreqICU)
+    strfreqnoICU=as.numeric(strfreqnoICU)
+    if (strfreqnoICU>0) {
+      prop=strfreqICU/strfreqnoICU
+    }
+    if (strfreqnoICU==0) {
+      prop=0
+    }
+    frequencies[c,5]=prop
     frequencies[c,4]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
-  findrow= which(fastsortnoICU$Var1 == str1, arr.ind = TRUE)
-  #översätt till ICD-kod
-  str2=fastsortnoICU[findrow,1]
-  str2 = as.character(str2) #byt till rätt form
-  strfreqnoICU=fastsortnoICU[c,2]
+  # findrow= which(fastsortnoICU$Var1 == str1, arr.ind = TRUE)
+  # #översätt till ICD-kod
+  # str2=fastsortnoICU[findrow,1]
+  # str2 = as.character(str2) #byt till rätt form
+  # strfreqnoICU=fastsortnoICU[c,2]
   
-  if (length(str2>0)){
-    if (str1 == str2) {
-      frequencies[c,3]=strfreqnoICU
-      prop=strfreqICU/strfreqnoICU
-      frequencies[c,5]=prop
-    }
+  #det var något fel här, men 
+  # if (length(str2>0)){
+  #   if (str1 == str2) {
+  #     frequencies[c,3]=strfreqnoICU
+  #     prop=strfreqICU/strfreqnoICU
+  #     frequencies[c,5]=prop
+  #   }
+  
     #insert some proportions
     fasted= titcodata %>% filter(grepl('Yes', titcodata$fast)) 
     licupat=nrow(licu)
     
     
     
-  }
+  # }
   
 }
 
