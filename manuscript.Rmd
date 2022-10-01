@@ -3,8 +3,8 @@ title: 'Quantifying unmet ICU beds in tertiary hospitals in urban India using Pr
   Score Matching '
 author: "Maria Eriksson"
 output:
-  word_document: default
   html_document: default
+  word_document: default
   pdf_document: default
 bibliography: bibliography.bib
 csl: vancouver.csl
@@ -283,7 +283,6 @@ Second step is to identify predictor variables: covariates most predictive of th
 Third step is to build a multivariable logistic regression model with ICU care as the outcome and the predictors selected in the second step as independent variables. The prediction model is based on the Training Data and predictors are weighed so that the the model awards patients that did go to the ICU corresponding high propensity. This model can then be used to predict new patients propensity to go to the ICU based on their baseline predictor values. By saving 40% in the Validation data set we have a set of patients that is new to the model. This allows to test how well the model correctly predicted ICU patients by awarding them high propensity scores.
 
 Fourth step is to apply this model on patients from the Test Data. Using the model, the standard variable propensity score is calculated for each patient in the Test Data set. The propensity score determines the likelihood that a patient will receive ICU care, given their condition. If the model is suitable, it will correctly identify patients that did go to the ICU by awarding them high propensity scores, but non-ICU patients that were similar to this cohort will also get high propensity scores. 
-
 <!-- 
 fråga: vi är ju ute efter ge vissa non-ICU pat höga propensity scores för att sedan kunna identifiera och filtrera fram dem i propensity score matchingen steg 5. Men hur identifierar man skillnaden mellan en patient som förmodligen borde fått ICU, och en patient modellen felaktigt spottat ut?
 Och om man switchar över redan i steg 4 finns det ingen validering sen mera för dålig PSM i steg 5? -->
@@ -292,7 +291,6 @@ Fifth step is PSM. In PSM members of the subset that did not get ICU care are ma
 <!-- (b) Fråga: 1. visst finns dessa svagheter i propensity score matching?
 2. vad gör man åt dem? 
 3. är beskrivningen av åtgärder mot detta något som hör hemma här eller i results?-->
-
 <!-- (b) Describe any methods used to examine subgroups and interactions -->
 
 The two subgroups were patients admitted to the ICU, and the patients who were not. Admission to the iCU is a binary yes or no, length of stay has not been taken into Consideration.

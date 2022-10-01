@@ -252,6 +252,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -369,7 +391,6 @@ hospitals in urban India using Propensity Score Matching</h1>
 </div>
 
 
-<pre class="r"><code>setwd(&quot;C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds&quot;)</code></pre>
 <!-- This is an R Markdown document. Markdown is a simple formatting
 syntax for authoring HTML, PDF, and MS Word documents. For more
 details on using R Markdown see http://rmarkdown.rstudio.com -->
@@ -425,64 +446,76 @@ should not be longer than 1-1.5 pages, typically 4-5 paragraphs, each
 <h2>Trauma globally and in India</h2>
 <p>Trauma is a substantial global health problem that disproportionately
 affects low and middle-income countries (LMIC), resulting in significant
-mortality and morbidity <span class="citation">@traumaLMIC</span>. 4.8
-million people die from trauma annually, 90% are in LMIC and 20% in
-India alone <span class="citation">@onemilliondead</span>. Despite
-having only 1% of the global vehicle fleet, a disproportionate 10% of
-global traffic casualties occur in India <span class="citation">@indiantrauma</span>.</p>
-<p>Globally, an estimated two million lives could be saved annually, if
-the appropriate and timely trauma care provided by hospitals in many
-high-income countries were available and provided in low
-to-middle-income countries (LMICs) <span class="citation">@indiantrauma</span>. Half of trauma mortality in India
-occur in-hospital, and while there is no national trauma registry in
-India, isolated studies have shown that in-hospital mortality within 30
+mortality and morbidity <span class="citation">(1)</span>. 4.8 million
+people die from trauma annually, 90% are in LMIC and 20% in India alone
+<span class="citation">(2)</span>. Despite having only 1% of the global
+vehicle fleet, a disproportionate 10% of global traffic casualties occur
+in India <span class="citation">(3)</span>. Half of trauma mortality in
+India occur in-hospital. There is no national trauma registry in India,
+but isolated studies have shown that in-hospital mortality within 30
 days of hospitalization is higher than similarly injured patients in HIC
-hospitals <span class="citation">@indiantrauma.This</span> difference in
-in-hospital mortality is likely multi-factorial, and any factors have
-been proposed to explain it such as differences in triage and
-delay-of-care, as well as shortage of hospital resources including ICU
-beds <span class="citation">@onemilliondead</span> ,<span class="citation">@traumaLMIC</span> .</p>
+hospitals <span class="citation">(3)</span>. Globally, an estimated two
+million lives could be saved annually, if the appropriate and timely
+trauma care provided by hospitals in many high-income countries were
+available and provided in low to-middle-income countries (LMICs) <span class="citation">(3)</span>.</p>
 <p>Health care professionals in many LMIC testify that their medical
 assessment oftentimes is that a trauma patient should be admitted to the
 ICU, but are not because such resources are scarce, overloaded and
 unavailable. Their medical judgement is that the lives of these patients
 were salvageable, and that these patients died as a direct result of not
-being admitted to the ICU <span class="citation">@stuffLMICdoctorssay</span>.</p>
+being admitted to the ICU <span class="citation">(4)</span>.</p>
 <p>Trauma is a main cause of mortality and morbidity to otherwise
 healthy and young individuals, and dispropotionately affect this
 demographic. Most casualties affected the age group 30-45 years,
-followed by the age bracket 18-30 years <span class="citation">@nationalcrime</span>. People in this demographic are
-also oftentimes the primary or sole breadwinners for their families.
+followed by the age bracket 18-30 years <span class="citation">(5)</span>. People in this demographic are also
+oftentimes the primary or sole breadwinners for their families.
 Therefore the detrimental impact of trauma go beyond mortality or
 substantial loss of disease-free years of life for the affected
 individuals, it also carries a considerable financial and social harm on
-their family members and communities <span class="citation">@traumaLMIC</span> <span class="citation">@nationalcrime</span></p>
+their family members and communities <span class="citation">(1)</span>
+<span class="citation">(5)</span></p>
 <p>A diverse mix of public, for-profit and not-for-profit private actors
-provide health services in India, where a majortiry of health care
-resources are held by private health care providers. According to a WHO
-2022 report, India has 76 709 non-ventilator supported and 39 476
-ventilator-supported ICU beds <span class="citation">@ICUbeds</span>.
-Because of the type and severity of injuries, ICU resources are often
-essential in care of trauma patients <span class="citation">@titco</span>.</p>
+provide health services in India, where private providers dominate.
+According to a WHO 2022 report, India has 76 709 non-ventilator
+supported and 39 476 ventilator-supported ICU beds <span class="citation">(6)</span>. Because of the type and severity of
+injuries, ICU resources are often essential in care of trauma patients
+<span class="citation">(7)</span>.</p>
 <!-- KommentarJohanna: I suggest adding more details about the context in India, the health care system, how common trauma is in India, how many ICU beds there are, why ICU care is important for the trauma population and so on.. 
 -->
 <!-- KommentarMartin:You can definitely write more about the health care system in India, the trauma system, the availability of ICUs, how common ICU care is in trauma, why trauma patients need ICU care, how long they stay, outcomes etc -->
 <!-- Respons: Ja det är magert men det finns en orsak till det, jag har undvikit detta av två skäl
  1.Datan som står att finna om ICU vård resurserna i Indien är lite spretig, men enligt WHO så är den runt 8 per 100.000 och andra trovärdiga bedömare är där nånstans +- 50%. Det är i paritet med Sverige? Förklaringen står kanske att finna i att definitionen av en ICU bed inte är vedertagen men trots mycket läsande innantill har jag inte kunnat avfärda eller förklara detta. 
 2. pkt 1 lyfter en fråga som ökar komplexiteten: det finns lite olika levels av ICU beds, vilken är det vi menar? Eftersom statistiken på ICU resurser är dåligt differentierad och TITCO datasetet inte specificerar det, ska frågan undvikas för att inte öka komplexiteten för sig själv? -->
+</div>
+<div id="methods-to-examine-trauma-care-and-ensure-equivalence" class="section level2">
+<h2>Methods to examine trauma care and ensure equivalence</h2>
 <p>In order to improve and ensure equivalence of intra-hospital care,
-trauma quality improvement programs (TQIP) have been developed. TQIP has
-evolved to a broad term that include many kinds of processes to improve
-the quality of trauma care, such as mortality and morbidity conferences,
-using audit filters or comparing risk adjusted outcomes over time and
-between centres. The TITCO data set is among the first trauma registry
-data bases established in India and can be used for TQIPs in an Indian
-context <span class="citation">@titco</span>. TQIP often originate in
-high-income countries (HIC), they are either not applicable nor easily
-transferred to the hospital conditions of LMIC <span class="citation">@frailty</span> <span class="citation">@onemilliondead</span>. For trauma patients, there
-exist significant structural differences between HIC and LMIC in factors
-such as injury mechanisms and severity, health care resources as well as
-patient make-up <span class="citation">@frailty</span> <span class="citation">@indiantrauma</span> <span class="citation">@traumaLMIC</span> <span class="citation">@onemilliondead</span>.</p>
+trauma quality improvement programs (TQIP) have been developed. The
+pilot and most notable example is the TQIP developed by the American
+College of Surgeons ACS. Since the implementation of the ACS pilot, TQIP
+has evolved to a broad term that include many kinds of processes to
+improve the quality of trauma care, such as mortality and morbidity
+conferences, using audit filters or comparing risk adjusted outcomes
+over time and between centres. The aim is to find discrepancies in
+treatment for patients presenting with similar conditions. This
+difference in in-hospital mortality is likely multi-factorial, and any
+factors have been proposed to explain it such as differences in triage
+and delay-of-care, as well as shortage of hospital resources including
+ICU beds <span class="citation">(2)</span> ,<span class="citation">(1)</span> . TQIPs aim to ensure patients get
+equivalent care within and across hospitals, to benchmark performance of
+health care providers versus their peers and to improve trauma care by
+developing best practice guidelines <span class="citation">(8)</span>.</p>
+<p>TQIP often originate in high-income countries (HIC), they are either
+not applicable nor easily transferred to the hospital conditions of LMIC
+<span class="citation">(9)</span> <span class="citation">(10)</span>
+<span class="citation">(2)</span>. For trauma patients, there exist
+significant structural differences between HIC and LMIC. These
+differences are in factors such as injury mechanisms and severity,
+health care resources as well as patient make-up <span class="citation">(9)</span> <span class="citation">(3)</span> <span class="citation">(1)</span> <span class="citation">(2)</span>. These
+differences make a direct transferral of HIC TQIP models onto LMIC
+irrelevant or misleading and there is a need to develop TQIP assessment
+applicable to local conditions.</p>
+<!-- Ni vil båda flytta fokus från detta, och jag förstår inte riktigt varför det är med kopplingen är luddig. Är det för att säga: det finns TQIPs som ger en fingervisning om hur ICU ska dimensioneras, bestyckas, bemannas och bedrivas Men det finns inga färdiga TQIPs som kan användas för att kvantifiera ICU-bristen i Indien och vi tror det är vanskligt att använda de befintliga eftersom de skapats under så olika förhållanden. Och därför måste vi börja från noll? -->
 </div>
 <div id="knowlege-gap" class="section level2">
 <h2>Knowlege gap</h2>
@@ -493,10 +526,10 @@ unknown.</p>
 <p>WHO and local health care workers believe there is a shortage of ICU
 beds in Indian hospitals, and that the lives of many patients would have
 been salvageable if the appropriate ICU resources had been available
-<span class="citation">@ICUbeds</span>. The differences of in-hospital
-trauma mortality in Indian hospitals was double that of high-income
-countries, and part of this difference could be explained by a shortage
-of ICU beds in India <span class="citation">@indiantrauma</span> .</p>
+<span class="citation">(6)</span>. The differences of in-hospital trauma
+mortality in Indian hospitals was double that of high-income countries,
+and part of this difference could be explained by a shortage of ICU beds
+in India <span class="citation">(3)</span> .</p>
 </div>
 <div id="aim" class="section level2">
 <h2>Aim</h2>
@@ -511,6 +544,14 @@ patients is indicative of the relative shortage of ICU beds.</p>
 </div>
 <div id="methods-1" class="section level1">
 <h1>Methods</h1>
+<!-- 
+Definitions
+------------
+An ICU bed is a tiltable hospital bed but included in the term is also staffing and auxiliary equipment. The equipment is to administer oxygen and to monitor vitals. Some ICU beds are equipped with ventilators and if applicable length of ventilation has been registered.
+
+Staffing is one doctor in the ward, and 1:4 nurses per patient but there is not always strict adherence to staffing guidelines. 
+If the ICU ward is 100% full, patients might receive ventilation outside the ICU ward. Though the care these patients receive could very well be considered ICU care, they are not registered as such in the TITCO registry.
+-->
 <div id="study-design" class="section level2">
 <h2>Study design</h2>
 <!-- Present key elements of study design -->
@@ -522,7 +563,7 @@ Improved Trauma Care Outcomes (TITCO) in India cohort.</p>
 <!-- Describe the setting, locations, and relevant dates, including
 periods of recruitment, exposure, follow-up, and data collection -->
 <p>16 000 patients admitted to four public university hospitals in urban
-India are included in the TITCO dataset <span class="citation">@titco</span>. Initially the data set included 16047
+India are included in the TITCO dataset <span class="citation">(7)</span>. Initially the data set included 16047
 patients, but to improve anonymization 47 patients were deleted from the
 dataset as described in the chapter anonymization. The participating
 hospitals were King Edward Memorial hospital (KEM) and Lokmanya Tilak
@@ -560,11 +601,11 @@ patient records.</p>
 methods of selection of participants. Describe methods of
 follow-up. For matched studies, give matching criteria and number of
 exposed and unexposed -->
-<p>The eligibility criteria for TITCO were patients who presented with
-injuries from trauma at the emergency departments of the participating
-hospitals with a mechanism of road traffic, railway, fall, burn or
-assault. Patients who were dead on arrival were excluded, as were
-patients who only had isolated limb injuries.</p>
+<p>The eligibility criteria for TITCO were all patients who presented
+with injuries from trauma at the emergency departments of the
+participating hospitals with a mechanism of road traffic, railway, fall,
+burn or assault. Patients who were dead on arrival were excluded, as
+were patients who only had isolated limb injuries.</p>
 <!-- Case-control study: Give the eligibility criteria, and the
 sources and + methods of case ascertainment and control
 selection. Give the rationale for the choice of cases and
@@ -726,52 +767,45 @@ inaccuracies or practical challenges, it shall be omitted.</p>
 <div id="bias" class="section level2">
 <h2>Bias</h2>
 <!-- Describe any efforts to address potential sources of bias -->
-<p>The TITCO dataset are observational data collected from a clinical
+<p>The TITCO dataset is observational data collected from a clinical
 environment and not an experimental setting. Medical interventions,
 examinations and ICU admission are not randomized, they are a
 consequence of a patient’s medical condition. There exists a causal
 effect between the independent and the dependent variables: a patient is
-sent to the ICU precisely because of the severity of their
-condition.</p>
-<p>There exists a potential bias in the routines, resources and patient
-makeup of the participating hospitals. Because they are all tertiary
-hospitals, about two thirds of the patients have been referred from
-other health care providers meaning that there is a selection bias in
-the patient populations. Further, hospitals with dedicated trauma wards
-have a propensity to receive transferred or police escorted patients
-with worse condition and prognosis. The hospitals in this study were all
-top-tier tertial hospitals in their respective community, meaning they
-did not refer patients onward.</p>
+sent to the ICU precisely because of the severity of their condition.
+There is also a selection bias in which parameters are recorded and
+which examinations are performed, introducing detection and observer
+bias.</p>
+<p>There exist a bias in the routines, resources and patient makeup of
+the participating hospitals. Because they are all tertiary hospitals,
+about two-thirds of the patients have been referred from other health
+care providers, meaning that there is a selection bias in the patient
+populations. Further, hospitals with dedicated trauma wards have a
+propensity to receive more transferred or police-escorted patients.</p>
 <p>As stated in chapter Settings, most patients have low socioeconomic
-status. Low socioeconomic status is associated with higher level of
-malnutrition and comorbidities and would have a negative effect on
-vitals and the capacity of patients to tolerate certain interventions.
-This circumstance doesn’t affect the analysis and internal validity, but
-reduce the generalizability of the results.</p>
-<p>Because the purpose of this thesis is to statistically assess how
-many patients that should have gone to the ICU but did not, these
-particular selection biases are not expected to skew the outcome, and
-therefore does not have to be addressed.</p>
-<p>Hospitals with trauma wards could have lower admission criteria to
-the ICU than hospitals with no trauma ward. Because examining admission
-criteria to the ICU is part of the analysis, any bias from differences
-in hospital admission criteria must be minimized. This is why the PSM
-model is trained using a training and validation subset as described in
-the chapter Statistical methods. If this proves insufficient and
-unsatisfactory it may be necessary to examine and address this bias by
-comparing ICU admitted patients between hospitals using the same PSM
-methodology, but this will go beyond the time frame and scope of this
-thesis. <!--  
+status. This circumstance doesn’t affect the analysis and internal
+validity, but reduces the generalizability of the results.</p>
+<p>Biases like these are expected in data collected in a clinical
+setting, the analysis model i chosen to adress this. Because the purpose
+of this thesis is to statistically assess how many patients that should
+have gone to the ICU but did not, these particular selection biases are
+not expected to skew the outcome, and therefore does not have to be
+addressed.</p>
+<p>Hospitals with trauma wards could have different admission criteria
+to the ICU than hospitals with no trauma ward. The same goes for all
+equipment any hospital has as well as the proficiency of their
+physicians. Because examining admission criteria to the ICU is part of
+the analysis, any bias from differences in hospital admission criteria
+must be minimized. This is why the PSM model is trained using a training
+and validation subset as described in the chapter Statistical methods.
+If this proves insufficient and unsatisfactory it may be necessary to
+examine and address this bias by comparing ICU admitted patients between
+hospitals using the same PSM methodology, but this will go beyond the
+time frame and scope of this thesis.</p>
+<!--  
 Propensity score matching in itself introduces a source of bias from unfit assumptions. The terminology and potential sources of bias are explained chapter Study Design. In choosing predictor variables the researcher could introduce an overdetermined set and a self-fulfilling prophecy. For this reason the dataset shall be randomly split into two parts of 40% and 60% of the patients. The 60% shall be used to produce the propensity score matching, and the remaining 40% shall be used to verify it. 
---></p>
-<!-- Fråga: vad är distinktionen mellan bias och error med PSM egentligen? är det error eller bias som uppstår om jag ex skulle välja ICU-sjukhuset som prediktor? Är det bias att ha för generösa calipers? Som jag förstår finns risk att få vilket resultat som helst med val metod för matching och limitations ? Och att jag väljer calipers som producerar resultat som jag tycker känns "rimliga"? Ex jag kanske väntar mig att ICU bristen är 20% för jag föreställer mig att de patienter jag söker är de som är "på ribban" alltså de matchar de "friskaste" 20% av dem som var på ICU. Det känns mindre sannolikt att en patient inte fått ICU om den är jämförbar med någon som var en av de mest skadade 20% på ICU. Men ICU-populationen kanske inte stratifierar så, ICU-patienterna är kanske snarare en pyramid där de flesta är "på ribban" och sen finns några få riktigt riktigt skadade i toppen av pyramiden som inte matchar icke-ICU populationen alls men inte är så viktig för de är så få. 
-Vilket för mig vidare på tankar om val av matchningsmetod nearest neighbor osv. I vår analys vill vi inte hämta en specifik proportion that would defeat the purpose. Och men då är frågan om varje pat i de lägre "stratosfärerna" av ICU kan matchas till flera icke-ICU medan svårt skadade ICU-pat blir utan matchingar?   -->
-</div>
-<div id="study-size" class="section level2">
-<h2>Study size</h2>
-<!-- Explain how the study size was arrived at -->
-<p>Data of 16000 trauma patients were collected at the participating
-hospitals over 2.5 years, as described in chapter Settings.</p>
+-->
+<!-- Fråga: vad är distinktionen mellan bias och error med PSM egentligen? är det error eller bias som uppstår om jag ex skulle välja ICU-sjukhuset som prediktor? Är det bias att ha för generösa calipers? Som jag förstår finns risk att få vilket resultat som helst med val metod för matching och limitations ? Och att jag väljer calipers som producerawr resultat som jag tycker känns "rimliga"? Ex jag kanske väntar mig att ICU bristen är 20% för jag föreställer mig att de patienter jag söker är de som är "på ribban" alltså de matchar de "friskaste" 20% av dem som var på ICU. Det känns mindre sannolikt att en patient inte fått ICU om den är jämförbar med någon som var en av de mest skadade 20% på ICU.   -->
 </div>
 <div id="statistical-methods" class="section level2">
 <h2>Statistical methods</h2>
@@ -784,50 +818,38 @@ for confounding
 assembling a control group from within a data set where there is
 causality between the independent and dependent variables, and a
 randomized case-control (RCT) study to offset or balance this bias is
-impractical, immoral or otherwise improper. Propensity score is a
-statistical variable, understood as the likelihood of a subject
-receiving treatment conditional on observations of relevant covariates
-of that subject before treatment. In RCTs it is known from study design,
-but it is generally unknown in observational data. The rationale for PSM
-is that while it is unknown, this variable can be fairly well estimated
-using logistic regression.</p>
+impractical, immoral or otherwise improper.</p>
 <p>The theory being examined in this master’s thesis is that there exist
 a subset of the TITCO dataset that did not go to the ICU, but are very
 similar to the patients that did go to the ICU, in the covariates that
-caused ICU-treated patients to receive this intervention. The thesis is
-that these patients were not admitted to the ICU only for lack of such
-resources, not by a medical assessment.</p>
-<p>Translated into this context this means that in this data set exist a
-selection bias, there is causality between the independent variables
-medical conditions and interventions and the dependent variable ICU
-admittance. Patients were admitted to the ICU as a consequence of their
-medical condition. Performing a randomized case-control study and
-randomly assigning or withholding a live-saving treatment would
-obviously be immoral, but we believe that in the TITCO data set exist
-patients who were not admitted into the ICU not by volition but for
-scarcity of such resources. Such a group would be akin to an
-non-experimental control group and PSM can be used to identify and
-assemble it. If such a subset can be identified by PSM, then it
-naturally follows that there exists shortage of ICU beds in tertiary
-hospitals in India. It also follows that the shortage can be quantified
-by the proportionality of this subset versus the subset that did receive
-ICU care. If, for every patient that did receive ICU care, there was
-another patient with similar predictors that wasn’t admitted due to
-scarcity of ICU resources, that would mean the ICU resources are 50% of
-what they ought to be.</p>
+caused ICU-treated patients to be admitted. The thesis is that these
+patients were not admitted to the ICU only for lack of ICU resources,
+not by a medical assessment. Such a group would be akin to an
+non-experimental control group that PSM can be used to identify and
+assemble.</p>
+<p>If such a group of patients can be identified by PSM, that is
+indicative there exists shortage of ICU beds in tertiary hospitals in
+India. The size of this group versus the size of the group that did
+receive ICU care indicate the magnitude of the ICU bed shortage. If, for
+every patient that did receive ICU care, there was another patient with
+similar predictors that should hade received ICU care based on our
+prediction model but did not due to scarcity of ICU resources, that
+would mean the ICU resources are 50% of what they ought to be.</p>
 <p>The propensity score model is developed using the Training Data and
-tested using the Validation Data. The workflow contains a series of
-steps. The output of each step is the input for later steps. The model
-is developed using Testing Data and is tested with Validation Data. By
-reverting back and adjusting assumptions in an iterative process, the
-model is continuously improved and the accuracy and validity is
-improved.</p>
+tested using the Test Data. The workflow contains a series of steps. The
+output of each step is the input for later steps. Steps three and four
+that involve development and validation of a multivariable regression
+model have several standard methods to test and improve model validity,
+and the matching process of step five have several means by which you
+can control and validate the process. By reverting back and adjusting
+assumptions in an iterative process, the model is continuously improved
+and the accuracy and validity is improved.</p>
 <p>The first step of PSM is to randomly split the data set into two
-parts, 60% and 40%. The 60% part is a Training Data used to develop the
-propensity score model, and the 40% part is the Validation Part. This is
-done because the inherent bias of the PSM method described in chapter
-Bias. Training Data is used in steps 2-3 and the resulting model is then
-validated using Validation Data.</p>
+parts, 60% and 40%. The 60% part is Training Data used to develop the
+propensity score model, and the 40% part is the Test Part. This is done
+to detect overfitting of the model to the Training Data. Training Data
+is used in steps 2-3 and the resulting model is then validated using
+Test Data.</p>
 <p>Second step is to identify predictor variables: covariates most
 predictive of the dependent variable, as described in chapter Predictor
 selection. In this context it means to first identify the conditions and
@@ -841,35 +863,36 @@ minimize the risk to choose irrelevant predictors and introduce
 error.</p>
 <p>Third step is to build a multivariable logistic regression model with
 ICU care as the outcome and the predictors selected in the second step
-as independent variables using Testing Data.</p>
-<p>Fourth step is to apply this model on patients from the Validation
-Data set. Using the model, calculate the standard variable propensity
-score for each patient in the Validation Data set and determine whether
-the patients that were admitted to the ICU in the validation set receive
-appropriate propensity scores by the model constructed in step 2-3. The
-propensity score determines the likelihood that a patient will receive
-ICU care, given their condition.</p>
-<!-- 
-#fråga: är det såhär man gör menade du Johanna? vad är det egentligen som händer i steg 3 och vad består "träningen" av i steg 2-3? År det att man har valt sina variabler i steg 2 men vi vet inte om de är bra och vi vet inte deras inbördes relevans/vikt för den oberoende variabeln. Så vi petar in dem i steg 3 och klickar OK, och sen bygger R en multivariabelregressionsmodell åt en som viktar prediktorerna åt en så att modellen tilldelar patienterna propensity scores som stämmer bäst överens med deras ICU-status (som är känt för R). R tweakar/vikar/manipulerar modellen att passa träningsdatasetet man matat den med, och bygger en modell som mha prediktorerna är bäst på att identifiera de patienter som R vet hamnade på ICU?
-
-Det gör vi för att optimera modellens kapacitet att "förutse" vad som kommer hända med en "helt ny" patient med en uppsättning värden på prediktorerna? 
-Så har vi i Validation Data sparat en uppsättning "helt nya" patienter som vi prövar modellen på? Och ser om modellen är bra på att ge ICU-patienter rimliga propensity scores?
-Är det det du menar att modellen ska "träna" på ett set och testas på ett annat?
-
-Och om man switchar över redan i steg 4 finns det ingen validering sen mera för dålig PSM i steg 5? -->
+as independent variables. The prediction model is based on the Training
+Data and predictors are weighed so that the the model awards patients
+that did go to the ICU corresponding high propensity. This model can
+then be used to predict new patients propensity to go to the ICU based
+on their baseline predictor values. By saving 40% in the Validation data
+set we have a set of patients that is new to the model. This allows to
+test how well the model correctly predicted ICU patients by awarding
+them high propensity scores.</p>
+<p>Fourth step is to apply this model on patients from the Test Data.
+Using the model, the standard variable propensity score is calculated
+for each patient in the Test Data set. The propensity score determines
+the likelihood that a patient will receive ICU care, given their
+condition. If the model is suitable, it will correctly identify patients
+that did go to the ICU by awarding them high propensity scores, but
+non-ICU patients that were similar to this cohort will also get high
+propensity scores. <!-- 
+fråga: vi är ju ute efter ge vissa non-ICU pat höga propensity scores för att sedan kunna identifiera och filtrera fram dem i propensity score matchingen steg 5. Men hur identifierar man skillnaden mellan en patient som förmodligen borde fått ICU, och en patient modellen felaktigt spottat ut?
+Och om man switchar över redan i steg 4 finns det ingen validering sen mera för dålig PSM i steg 5? --></p>
 <p>Fifth step is PSM. In PSM members of the subset that did not get ICU
-care but had similar predictors - and therefore similar propensity
-scores - as the subgroup that did get ICU care, are matched to patients
-who did go to the ICU. There are a few different ways to perform this
+care are matched to patients who did go to the ICU, matching based on
+their propensity scores. There are a few different ways to perform this
 matching but they are all imperfect because propensity scores are unique
 and perfect matching is unattainable. There are control mechanisms and
 limitations but a risk of applying too fix or too loose matching
 criteria and inadvertently vastly under- or overestimate the need of ICU
 beds remain.<br />
-<!-- (b) 1. visst finns dessa svagheter i propensity score matching?
+<!-- (b) Fråga: 1. visst finns dessa svagheter i propensity score matching?
 2. vad gör man åt dem? 
-3. är beskrivningen av åtgärder mot detta något som hör hemma här eller i results?--></p>
-<!-- (b) Describe any methods used to examine subgroups and interactions -->
+3. är beskrivningen av åtgärder mot detta något som hör hemma här eller i results?-->
+<!-- (b) Describe any methods used to examine subgroups and interactions --></p>
 <p>The two subgroups were patients admitted to the ICU, and the patients
 who were not. Admission to the iCU is a binary yes or no, length of stay
 has not been taken into Consideration.</p>
@@ -944,7 +967,7 @@ quantitative data, such as trends.</p>
 delay-of-care. Second and third delays, corresponding to the delays
 between incident and hospital admission and between admission and first
 survey have been proposed to have high relevance for patient outcome
-<span class="citation">@indiantrauma</span> .</p>
+<span class="citation">(3)</span> .</p>
 <p>For the qualitative data, the propensity of each parameter for ICU
 admission is compared to the proportion of patients that were admitted
 to the ICU from the whole TITCO-I data set, about a third. If
@@ -2473,6 +2496,67 @@ Discuss the generalisability (external validity) of the study results
 <div id="references" class="section level1">
 <h1>References</h1>
 <!-- Do not edit by hand, references will be inserted and formatted automatically once you knit this document -->
+<div id="refs" class="references csl-bib-body">
+<div id="ref-traumaLMIC" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Laytin AD, Debebe F. The burden of injury in
+low-income and middle-income countries: Knowing what we know,
+recognising what we don’t know. Emergency Medicine Journal [Internet].
+2019 Apr;emermed-2019-208514. Available from: <a href="https://doi.org/10.1136/emermed-2019-208514">https://doi.org/10.1136/emermed-2019-208514</a></div>
+</div>
+<div id="ref-onemilliondead" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Bhandarkar P, Patil P, Soni KD, O’Reilly GM,
+Dharap S, Mathew J, et al. An analysis of 30-day in-hospital trauma
+mortality in four urban university hospitals using the australia india
+trauma registry. World Journal of Surgery [Internet]. 2020
+Oct;45(2):380–9. Available from: <a href="https://doi.org/10.1007/s00268-020-05805-7">https://doi.org/10.1007/s00268-020-05805-7</a></div>
+</div>
+<div id="ref-indiantrauma" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Roy
+N, Gerdin M, Ghosh S, Gupta A, Kumar V, Khajanchi M, et al. 30-day
+in-hospital trauma mortality in four urban university hospitals using an
+indian trauma registry. World Journal of Surgery [Internet]. 2016
+Feb;40(6):1299–307. Available from: <a href="https://doi.org/10.1007/s00268-016-3452-y">https://doi.org/10.1007/s00268-016-3452-y</a></div>
+</div>
+<div id="ref-stuffLMICdoctorssay" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Malelelo-Ndou H, Ramathuba DU, Netshisaulu KG.
+Challenges experienced by health care professionals working in
+resource-poor intensive care settings in the limpopo province of south
+africa. Curationis [Internet]. 2019 Mar;42(1). Available from: <a href="https://doi.org/10.4102/curationis.v42i1.1921">https://doi.org/10.4102/curationis.v42i1.1921</a></div>
+</div>
+<div id="ref-nationalcrime" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Jayakumar DrR, Duvvuru DrRReddy, editors.
+Research trends in multidisciplinary research [Internet].
+<span>AkiNik</span> Publications; 2022. Available from: <a href="https://doi.org/10.22271/ed.book.1458">https://doi.org/10.22271/ed.book.1458</a></div>
+</div>
+<div id="ref-ICUbeds" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Srivastava S, Karan AK, Bhan N, Mukhopadhya I,
+Organization WH, et al. India: Health system review. Health Systems in
+Transition. 2022;11(1). </div>
+</div>
+<div id="ref-titco" class="csl-entry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">collaborators T. Titco/titco-i: The original
+anonymized TITCO cohort of 16000 trauma patients. <a href="https://github.com/titco/titco-I#citation" class="uri">https://github.com/titco/titco-I#citation</a>; 2017. </div>
+</div>
+<div id="ref-tqip" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Newgard CD, Fildes JJ, Wu L, Hemmila MR, Burd
+RS, Neal M, et al. Methodology and analytic rationale for the american
+college of surgeons trauma quality improvement program. Journal of the
+American College of Surgeons [Internet]. 2013 Jan;216(1):147–57.
+Available from: <a href="https://doi.org/10.1016/j.jamcollsurg.2012.08.017">https://doi.org/10.1016/j.jamcollsurg.2012.08.017</a></div>
+</div>
+<div id="ref-frailty" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Tracy BM, Adams MA, Schenker ML, Gelbard RB.
+The 5 and 11 factor modified frailty indices are equally effective at
+outcome prediction using <span>TQIP</span>. Journal of Surgical Research
+[Internet]. 2020 Nov;255:456–62. Available from: <a href="https://doi.org/10.1016/j.jss.2020.05.090">https://doi.org/10.1016/j.jss.2020.05.090</a></div>
+</div>
+<div id="ref-gunshot" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Heaney JB, Guidry C, Simms E, Turney J, Meade
+P, Hunt JP, et al. To <span>TQIP</span> or not to <span>TQIP</span>?
+That is the question. The American Surgeon [Internet]. 2014
+Apr;80(4):386–90. Available from: <a href="https://doi.org/10.1177/000313481408000422">https://doi.org/10.1177/000313481408000422</a></div>
+</div>
+</div>
 </div>
 
 
