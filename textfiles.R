@@ -223,8 +223,8 @@ for (b in 1:3) {
 #ok, nu vill jag skapa en matris som för varje ICD-kod som förekommer på ICU skapar en motsvarande 
 n=0
 
-frequencies= data.frame(matrix(, nrow = nrow(xraysortICU), ncol =5 ))
-colnames(frequencies)<-data.frame("ICD code","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
+frequencies= data.frame(matrix(, nrow = nrow(xraysortICU), ncol =6 ))
+colnames(frequencies)<-data.frame("ICD code","ICD label","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
 for (c in 1:nrow(xraysortICU)) {
        str1 <- xraysortICU[c,1]
        str1 = as.character(str1)
@@ -232,17 +232,22 @@ for (c in 1:nrow(xraysortICU)) {
        
        #hitta på vilken row denna finns i TITCOsetets ICD rad
       findrow= which(xraysortTITCO$Var1 == str1, arr.ind = TRUE)
+    
       #översätt till ICD-kod
       str2=xraysortTITCO[findrow,1]
       str2 = as.character(str2) #byt till rätt form
       strfreqTITCO=xraysortTITCO[c,2]
-      
+      findrowICD= which(icdcodes[1:nrow(icdcodes),1] == str1, arr.ind = TRUE)
+      ICDlabel=icdcodes[findrowICD,2]
        
        if (str1 == str2) {
          frequencies[c,1]=str1
-         frequencies[c,2]=strfreqICU
+         if (length(ICDlabel)>0) {
+         frequencies[c,2]=ICDlabel
+         }
+         frequencies[c,3]=strfreqICU
          strfreqTITCO=as.numeric(strfreqTITCO)
-         frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+         frequencies[c,4]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
          strfreqnoICU=strfreqTITCO-strfreqICU
          strfreqICU=as.numeric(strfreqICU)
          strfreqnoICU=as.numeric(strfreqnoICU)
@@ -252,8 +257,8 @@ for (c in 1:nrow(xraysortICU)) {
          if (strfreqnoICU==0) {
            prop=0
          }
-         frequencies[c,5]=prop
-         frequencies[c,4]=strfreqTITCO
+         frequencies[c,6]=prop
+         frequencies[c,5]=strfreqTITCO
        }
       
       #hitta på vilken row denna finns i noICU ICD rad
@@ -284,8 +289,9 @@ xrayfreqsort=print(frequencies[order(frequencies$propICUvsnoICU, decreasing = TR
 #nu har jag klöddat så mycket manuellt att copypaste är enda lösningen för att göra om för fast, op ct och ext
 
 #ext
-frequencies= data.frame(matrix(, nrow = nrow(extsortICU), ncol =5 ))
-colnames(frequencies)<-data.frame("ICD code","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
+frequencies= data.frame(matrix(, nrow = nrow(extsortICU), ncol =6 ))
+
+colnames(frequencies)<-data.frame("ICD code","ICD label","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
 for (c in 1:nrow(extsortICU)) {
   str1 <- extsortICU[c,1]
   str1 = as.character(str1)
@@ -297,13 +303,17 @@ for (c in 1:nrow(extsortICU)) {
   str2=extsortTITCO[findrow,1]
   str2 = as.character(str2) #byt till rätt form
   strfreqTITCO=extsortTITCO[c,2]
-  
+  findrowICD= which(icdcodes[1:nrow(icdcodes),1] == str1, arr.ind = TRUE)
+  ICDlabel=icdcodes[findrowICD,2]
   
   if (str1 == str2) {
     frequencies[c,1]=str1
-    frequencies[c,2]=strfreqICU
+    if (length(ICDlabel)>0) {
+      frequencies[c,2]=ICDlabel
+    }
+    frequencies[c,3]=strfreqICU
     strfreqTITCO=as.numeric(strfreqTITCO)
-    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    frequencies[c,4]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
     strfreqnoICU=strfreqTITCO-strfreqICU
     strfreqICU=as.numeric(strfreqICU)
     strfreqnoICU=as.numeric(strfreqnoICU)
@@ -313,8 +323,8 @@ for (c in 1:nrow(extsortICU)) {
     if (strfreqnoICU==0) {
       prop=0
     }
-    frequencies[c,5]=prop
-    frequencies[c,4]=strfreqTITCO
+    frequencies[c,6]=prop
+    frequencies[c,5]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
@@ -344,7 +354,7 @@ extfreqsort=print(frequencies[order(frequencies$propICUvsnoICU, decreasing = TRU
 
 #för OP
 frequencies= data.frame(matrix(, nrow = nrow(opsortICU), ncol =5 ))
-colnames(frequencies)<-data.frame("ICD code","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
+colnames(frequencies)<-data.frame("ICD code","ICD label","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
 for (c in 1:nrow(opsortICU)) {
   str1 <- opsortICU[c,1]
   str1 = as.character(str1)
@@ -356,13 +366,17 @@ for (c in 1:nrow(opsortICU)) {
   str2=opsortTITCO[findrow,1]
   str2 = as.character(str2) #byt till rätt form
   strfreqTITCO=opsortTITCO[c,2]
-  
+  findrowICD= which(icdcodes[1:nrow(icdcodes),1] == str1, arr.ind = TRUE)
+  ICDlabel=icdcodes[findrowICD,2]
   
   if (str1 == str2) {
     frequencies[c,1]=str1
-    frequencies[c,2]=strfreqICU
+    if (length(ICDlabel)>0) {
+      frequencies[c,2]=ICDlabel
+    }
+    frequencies[c,3]=strfreqICU
     strfreqTITCO=as.numeric(strfreqTITCO)
-    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    frequencies[c,4]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
     strfreqnoICU=strfreqTITCO-strfreqICU
     strfreqICU=as.numeric(strfreqICU)
     strfreqnoICU=as.numeric(strfreqnoICU)
@@ -372,8 +386,8 @@ for (c in 1:nrow(opsortICU)) {
     if (strfreqnoICU==0) {
       prop=0
     }
-    frequencies[c,5]=prop
-    frequencies[c,4]=strfreqTITCO
+    frequencies[c,6]=prop
+    frequencies[c,5]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
@@ -403,7 +417,7 @@ opfreqsort=print(frequencies[order(frequencies$propICUvsnoICU, decreasing = TRUE
 
 #för ct
 frequencies= data.frame(matrix(, nrow = nrow(ctsortICU), ncol =5 ))
-colnames(frequencies)<-data.frame("ICD code","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
+colnames(frequencies)<-data.frame("ICD code","ICD label","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
 for (c in 1:nrow(ctsortICU)) {
   str1 <- ctsortICU[c,1]
   str1 = as.character(str1)
@@ -415,13 +429,17 @@ for (c in 1:nrow(ctsortICU)) {
   str2=ctsortTITCO[findrow,1]
   str2 = as.character(str2) #byt till rätt form
   strfreqTITCO=ctsortTITCO[c,2]
-  
+  findrowICD= which(icdcodes[1:nrow(icdcodes),1] == str1, arr.ind = TRUE)
+  ICDlabel=icdcodes[findrowICD,2]
   
   if (str1 == str2) {
     frequencies[c,1]=str1
-    frequencies[c,2]=strfreqICU
+    if (length(ICDlabel)>0) {
+      frequencies[c,2]=ICDlabel
+    }
+    frequencies[c,3]=strfreqICU
     strfreqTITCO=as.numeric(strfreqTITCO)
-    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    frequencies[c,4]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
     strfreqnoICU=strfreqTITCO-strfreqICU
     strfreqICU=as.numeric(strfreqICU)
     strfreqnoICU=as.numeric(strfreqnoICU)
@@ -431,8 +449,8 @@ for (c in 1:nrow(ctsortICU)) {
     if (strfreqnoICU==0) {
       prop=0
     }
-    frequencies[c,5]=prop
-    frequencies[c,4]=strfreqTITCO
+    frequencies[c,6]=prop
+    frequencies[c,5]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad
@@ -462,7 +480,7 @@ ctfreqsort=print(frequencies[order(frequencies$propICUvsnoICU, decreasing = TRUE
 
 #fast
 frequencies= data.frame(matrix(, nrow = nrow(fastsortICU), ncol =5 ))
-colnames(frequencies)<-data.frame("ICD code","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
+colnames(frequencies)<-data.frame("ICD code","ICD label","freq ICU","freq no-ICU","freq TITCO","propICUvsnoICU")
 for (c in 1:nrow(fastsortICU)) {
   str1 <- fastsortICU[c,1]
   str1 = as.character(str1)
@@ -474,13 +492,17 @@ for (c in 1:nrow(fastsortICU)) {
   str2=fastsortTITCO[findrow,1]
   str2 = as.character(str2) #byt till rätt form
   strfreqTITCO=fastsortTITCO[c,2]
-  
+  findrowICD= which(icdcodes[1:nrow(icdcodes),1] == str1, arr.ind = TRUE)
+  ICDlabel=icdcodes[findrowICD,2]
   
   if (str1 == str2) {
     frequencies[c,1]=str1
-    frequencies[c,2]=strfreqICU
+    if (length(ICDlabel)>0) {
+      frequencies[c,2]=ICDlabel
+    }
+    frequencies[c,3]=strfreqICU
     strfreqTITCO=as.numeric(strfreqTITCO)
-    frequencies[c,3]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
+    frequencies[c,4]=strfreqTITCO-strfreqICU #det funkade dåligt att göra samma sortering på no-ICU (summorna stämemr inte), men de är ju resten så
     strfreqnoICU=strfreqTITCO-strfreqICU
     strfreqICU=as.numeric(strfreqICU)
     strfreqnoICU=as.numeric(strfreqnoICU)
@@ -490,8 +512,8 @@ for (c in 1:nrow(fastsortICU)) {
     if (strfreqnoICU==0) {
       prop=0
     }
-    frequencies[c,5]=prop
-    frequencies[c,4]=strfreqTITCO
+    frequencies[c,6]=prop
+    frequencies[c,5]=strfreqTITCO
   }
   
   #hitta på vilken row denna finns i noICU ICD rad

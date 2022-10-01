@@ -82,8 +82,8 @@ for (a in 1:qualcolumncount) {
   currentqual=qualcolname[a,1] #namn på kolumn
   currentlong=quallong[a,1]
   #currentcolumn=paste("titcodata$",currentqual, sep= "")
-  currentcol =titcodata %>% select(all_of(currentqual)) #hela kolumnen
-  currentcolchr=titcodata[1:nrow(titcodata),currentqual] #i chr form
+  currentcol =set2use %>% select(all_of(currentqual)) #hela kolumnen
+  currentcolchr=set2use[1:nrow(set2use),currentqual] #i chr form
   
   variants=qualstat[["CatTable"]][["Overall"]][[currentqual]][["level"]]
   variants=data.frame(variants)
@@ -122,7 +122,7 @@ for (a in 1:qualcolumncount) {
       freqtitco[loopno,1]=freqthisvar
     } #total in set
 
-    qualstatmatrix[loopno,6]=freqtitco
+    qualstatmatrix[loopno,6]=freqtitco[loopno,1]
     qualstatmatrix[loopno,7]=freqthisvar/(freqtitco[loopno,1]) #återkom
     
     qualstatmatrix[loopno,8]=percthisvar
