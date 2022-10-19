@@ -278,4 +278,7 @@ model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec, age,s
 # contrasts can be applied only to factors with 2 or more levels
 #nu är det istället
 #'weights' must be a numeric vector
+# men det som är förvirrande är att den accepterar bl_rec som är en Yes/no, men inte Sc_hi,ot_1 eller sex
 model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec,sc_hi,data=predictors, family=binomial)
+
+map(predictors, ~sum(is.na(.)))
