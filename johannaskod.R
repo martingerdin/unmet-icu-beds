@@ -167,10 +167,10 @@ data <- data %>%
   # mutate(treated_icu = case_when(licu > 24 ~ 1,
   #                                licu < 25 ~ 0))
 mutate(spO2_1_wO2 = case_when(str_detect(spo2_o2_1, "Yes")  ~ spo2_1))%>%
-mutate(spO2_1_woO2 = case_when(str_detect(spo2_o2_1, "Yes")  ~ spo2_1))%>%
+mutate(spO2_1_woO2 = case_when(str_detect(spo2_o2_1, "No")  ~ spo2_1))%>%
 
 mutate(spO2_2_wO2 = case_when(str_detect(spo2_o2_2, "Yes")  ~ spo2_2))%>%
-  mutate(spO2_2_woO2 = case_when(str_detect(spo2_o2_2, "Yes")  ~ spo2_2))
+  mutate(spO2_2_woO2 = case_when(str_detect(spo2_o2_2, "No")  ~ spo2_2))
 
 #måste nu tillfogar dessa som variabler til codebook
 newnames<-data.frame("delay2ifdirect","rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","ambulancefromthescene","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class","spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2")
@@ -249,13 +249,13 @@ geom_density(alpha = .2, fill = "#FF6666")
 
 
 # Select categorical column
-cat <- data.frame(select_if(predictors, is.character))
-ncol(cat)
+factor <- data.frame(select_if(predictors, is.character))
+ncol(factor)
 
 # Create graph for each column
-graph <- lapply(names(cat),
+graph <- lapply(names(factor),
                 function(x) 
-                  ggplot(cat, aes(get(x))) +
+                  ggplot(factor, aes(get(x))) +
                   geom_bar() +
                   theme(axis.text.x = element_text(angle = 90)))
 graph
@@ -266,10 +266,10 @@ tran=data$tran
 predictors$treated_icu=treated_icu
 
 #funkar inte
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ age+ ot_1+ moi+ tran+ died,data=predictors, family=binomial, na.omit)
+model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ ot_1+ moi+ tran+ died,data=predictors, family=binomial)
 
 #funkar
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec, age,sex,data=predictors, family=binomial)
+model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+niss+age+sex+died,data=predictors, family=binomial)
 
 #funkar inte, men errormeddelandet säger det beror på att vi i ot_1 bara har ett unikt värde vilket inte stämmer vi har yes och no
 model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec, age,sex,ot_1,data=predictors, family=binomial)
@@ -278,7 +278,8 @@ model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec, age,s
 # contrasts can be applied only to factors with 2 or more levels
 #nu är det istället
 #'weights' must be a numeric vector
-# men det som är förvirrande är att den accepterar bl_rec som är en Yes/no, men inte Sc_hi,ot_1 eller sex
+# men det som är förvirrande är att den accepterar bl_rec som är en Yes/no, men inte Sc_hi,ot_1
 model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec,sc_hi,data=predictors, family=binomial)
 
 map(predictors, ~sum(is.na(.)))
+summary(predictors)
