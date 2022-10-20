@@ -80,12 +80,14 @@ data <- data %>%
   mutate(rts_rr1 = case_when(rr_1 ==0   ~ 0,
                               rr_1 < 5   ~ 1,
                               rr_1 < 9   ~ 2,
-                              rr_1 > 29   ~ 3)) %>% 
+                              rr_1 > 29   ~ 3,
+                             rr_1 > 9 & rr_1 < 29   ~ 4)) %>% 
   
   mutate(rts_rr2 = case_when(rr_2 ==0   ~ 0,
                              rr_2 < 5   ~ 1,
                              rr_2 < 9   ~ 2,
-                             rr_2 > 29   ~ 3)) %>% 
+                             rr_2 > 29   ~ 3,
+                             rr_2 > 9 & rr_2 < 29 ~ 4)) %>% 
   
   #får in transfer 
   mutate(ambulancefromthescene = case_when(str_detect(tran, "No") & str_detect(mot, "Ambulance") ~ 1)) %>%                         
@@ -266,20 +268,13 @@ tran=data$tran
 predictors$treated_icu=treated_icu
 
 #funkar inte
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ ot_1+ moi+ tran+ died,data=predictors, family=binomial)
+model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ ot_1+ moi+ tran+ died,data=predictors, family=binomial)
 
 #funkar
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+niss+age+sex+died,data=predictors, family=binomial)
+model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+niss+age+sex+died+ot_1,data=predictors, family=binomial)
 
-#funkar inte, men errormeddelandet säger det beror på att vi i ot_1 bara har ett unikt värde vilket inte stämmer vi har yes och no
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec, age,sex,ot_1,data=predictors, family=binomial)
-
-#funkar inte, eftersom jag vet inte längre, först var error 
-# contrasts can be applied only to factors with 2 or more levels
-#nu är det istället
-#'weights' must be a numeric vector
-# men det som är förvirrande är att den accepterar bl_rec som är en Yes/no, men inte Sc_hi,ot_1
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec,sc_hi,data=predictors, family=binomial)
+#spO2_1_woO2+spO2_2_wO2+spO2_2_woO2 funkar inte, eftersom de har så många NA
 
 map(predictors, ~sum(is.na(.)))
 summary(predictors)
+sapply(predictors, table) 
