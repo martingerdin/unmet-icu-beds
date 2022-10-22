@@ -172,20 +172,41 @@ mutate(spO2_1_wO2 = case_when(str_detect(spo2_o2_1, "Yes")  ~ spo2_1))%>%
 mutate(spO2_1_woO2 = case_when(str_detect(spo2_o2_1, "No")  ~ spo2_1))%>%
 
 mutate(spO2_2_wO2 = case_when(str_detect(spo2_o2_2, "Yes")  ~ spo2_2))%>%
-  mutate(spO2_2_woO2 = case_when(str_detect(spo2_o2_2, "No")  ~ spo2_2))
+  mutate(spO2_2_woO2 = case_when(str_detect(spo2_o2_2, "No")  ~ spo2_2))%>%
+  
+  #using NEWS to make a reverse 
+  mutate(spO2_1_cat = case_when(str_detect(spo2_o2_1, "Yes") & spo2_1 > 97 ~ 1,
+                            str_detect(spo2_o2_1, "Yes") & spo2_1 > 95 ~ 2,
+                            str_detect(spo2_o2_1, "Yes") & spo2_1 > 93 ~ 3,
+                            str_detect(spo2_o2_1, "Yes") & spo2_1 > 88 ~ 4,
+                            str_detect(spo2_o2_1, "No") & spo2_1 > 93 ~ 4,
+                            str_detect(spo2_o2_1, "No") & spo2_1 > 86 ~ 3,
+                            str_detect(spo2_o2_1, "No") & spo2_1 > 83 ~ 2,
+                            str_detect(spo2_o2_1, "No") & spo2_1 < 83 ~ 1))%>%
+  
+  
+  mutate(spO2_2_cat = case_when(str_detect(spo2_o2_2, "Yes") & spo2_2 > 97 ~ 1,
+                                str_detect(spo2_o2_2, "Yes") & spo2_2 > 95 ~ 2,
+                                str_detect(spo2_o2_2, "Yes") & spo2_2 > 93 ~ 3,
+                                str_detect(spo2_o2_2, "Yes") & spo2_2 > 88 ~ 4,
+                                str_detect(spo2_o2_2, "No") & spo2_2 > 93 ~ 4,
+                                str_detect(spo2_o2_2, "No") & spo2_2 > 86 ~ 3,
+                                str_detect(spo2_o2_2, "No") & spo2_2 > 83 ~ 2,
+                                str_detect(spo2_o2_2, "No") & spo2_2 < 83 ~ 1))
+
 
 #måste nu tillfogar dessa som variabler til codebook
-newnames<-data.frame("delay2ifdirect","rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","ambulancefromthescene","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class","spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2")
-newlabels<-data.frame("delay2ifdirect","revised trauma score sbp1","revised trauma score sbp2","revised trauma score rr1","revised trauma score rr2","ambulancefromthescene","tranclass","blood received 1st hour", "serum creatinine high","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class","spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2")
-newtypes<-data.frame("quantitative","quantitative","quantitative","quantitative","quantitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","quantitative","quantitative","quantitative","quantitative")
+newnames<-data.frame("delay2ifdirect","rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","ambulancefromthescene","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class","spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2","spO2_1_cat","spO2_2_cat")
+newlabels<-data.frame("delay2ifdirect","revised trauma score sbp1","revised trauma score sbp2","revised trauma score rr1","revised trauma score rr2","ambulancefromthescene","tranclass","blood received 1st hour", "serum creatinine high","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class","spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2","spO2_1_cat","spO2_2_cat")
+newtypes<-data.frame("quantitative","quantitative","quantitative","quantitative","quantitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","qualitative","quantitative","quantitative","quantitative","quantitative","qualitative","qualitative")
 #men jag vet inte hur jag lägger till nya rader så...
-headersnew = data.frame(matrix(,nrow = nrow(codebook)+19, ncol = ncol(codebook)-1))
+headersnew = data.frame(matrix(,nrow = nrow(codebook)+21, ncol = ncol(codebook)-1))
 headersnew[1:193,1:ncol(codebook)]<-data.frame(codebook)
 colnames(headersnew)<-(colnames(codebook))
 #start=220 #nrow(headerproperties)+1
 #endat1=233 #nrow(headerproperties)+3
 count=0
-for (a in 1:19){
+for (a in 1:21){
   count=count+1
   headersnew[nrow(codebook)+count,1]=newnames[1,count]
   headersnew[nrow(codebook)+count,2]=newlabels[1,count]
@@ -239,7 +260,7 @@ predictors=data
 
 #predictors=data.frame(data["rts_sbp1”],data[”rts_sbp2”],data[”rts_rr1”],data[”rts_rr2”],data[”tranclass”],data[”bl_rec”],data[”sc_hi”],data[”gcs_v_1_class”],data[”gcs_m_1_class”],data[”gcs_e_1_class”],data[”gcs_v_2_class”],data[”gcs_m_2_class”],data[”gcs_e_2_class”], data["spO2_1_wO2"],data[”spO2_1_woO2”],data[”spO2_2_wO2”],data[”spO2_2_woO2"],data["NISS"],data["age"],data["sex"],data["age"],data["op_1"],data["moi"], data["tran"],data["died"])  
 
-predictors = data  %>% select("rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class", "spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2", "niss", "age", "sex", "age", "ot_1", "moi", "tran", "died")
+predictors = data  %>% select("rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class", "spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2", "niss", "age", "sex", "age", "ot_1", "moi", "tran", "died","spO2_1_cat","spO2_2_cat" )
 
 #titta på kont värdena och bedöm
 continuous <-select_if(predictors, is.numeric)
@@ -267,11 +288,38 @@ treated_icu=data$treated_icu
 tran=data$tran
 predictors$treated_icu=treated_icu
 
+#make 2 factor
+predictors$bl_rec <- as.factor(predictors$bl_rec)
+predictors$sc_hi <- as.factor(predictors$sc_hi)
+predictors$sex <- as.factor(predictors$sex)
+predictors$tran <- as.factor(predictors$tran)
+predictors$tranclass <- as.factor(predictors$tranclass)
+predictors$ot_1 <- as.factor(predictors$ot_1)
+predictors$moi <- as.factor(predictors$moi)
+predictors$tran <- as.factor(predictors$tran)
+predictors$died <- as.factor(predictors$died)
+
+#make integer
+predictors$rts_sbp1 <- as.integer(predictors$rts_sbp1)
+predictors$rts_sbp2 <- as.integer(predictors$rts_sbp2)
+predictors$rts_rr1 <- as.integer(predictors$rts_rr1)
+predictors$rts_rr2 <- as.integer(predictors$rts_rr2)
+predictors$gcs_v_1_class <- as.integer(predictors$gcs_v_1_class)
+predictors$gcs_m_1_class <- as.integer(predictors$gcs_m_1_class)
+predictors$gcs_e_1_class <- as.integer(predictors$gcs_e_1_class)
+predictors$gcs_v_2_class <- as.integer(predictors$gcs_v_2_class)
+predictors$gcs_m_2_class <- as.integer(predictors$gcs_m_2_class)
+predictors$gcs_e_2_class <- as.integer(predictors$gcs_e_2_class)
+
+
 #funkar inte
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ ot_1+ moi+ tran+ died,data=predictors, family=binomial)
+#model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+spO2_1_wO2+spO2_1_woO2+spO2_2_wO2+spO2_2_woO2+ niss+ age+ sex+ ot_1+ moi+ tran+ died,data=predictors, family=binomial)
 
 #funkar
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+niss+age+sex+died+ot_1,data=predictors, family=binomial)
+#model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+niss+age+sex+died+ot_1+spO2_1_cat,data=predictors, family=binomial)
+
+#funkar
+model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ niss+ age+ sex+ ot_1+ moi+ tran+ died+spO2_1_cat+spO2_2_cat,data=predictors, family=binomial)
 
 #spO2_1_woO2+spO2_2_wO2+spO2_2_woO2 funkar inte, eftersom de har så många NA
 
