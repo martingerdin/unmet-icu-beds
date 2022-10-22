@@ -5,6 +5,7 @@ library(lubridate)
 library(noacsr)
 library(glm2)
 library(ggplot2)
+library(pROC)
 
 setwd("C:/Users/maria/Downloads/Packt Learning RStudio for R Statistical Computing 2012 RETAIL eBook-repackb00k/unmet-ICU-beds")
 source("functions.R")
@@ -319,10 +320,45 @@ predictors$gcs_e_2_class <- as.integer(predictors$gcs_e_2_class)
 #model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+niss+age+sex+died+ot_1+spO2_1_cat,data=predictors, family=binomial)
 
 #funkar
-model=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ niss+ age+ sex+ ot_1+ moi+ tran+ died+spO2_1_cat+spO2_2_cat,data=predictors, family=binomial)
+glm.fit=glm2(treated_icu~rts_sbp1+rts_sbp2+rts_rr1+rts_rr2+tranclass+bl_rec+sc_hi+gcs_v_1_class+gcs_m_1_class+gcs_e_1_class+gcs_v_2_class+gcs_m_2_class+gcs_e_2_class+ niss+ age+ sex+ ot_1+ moi+ tran+ died+spO2_1_cat+spO2_2_cat,data=predictors, family=binomial)
 
 #spO2_1_woO2+spO2_2_wO2+spO2_2_woO2 funkar inte, eftersom de har så många NA
 
 map(predictors, ~sum(is.na(.)))
 summary(predictors)
 sapply(predictors, table) 
+
+#okej, nu ska jag bedöma hur bra det blev. Steg 1 verkar vara att återskapa prediktor-dataframen så som den var innan jag la till beroende variabeln
+#predictors <- predictors %>% pull(treted_icu)
+
+# predictors = data  %>% select("rts_sbp1","rts_sbp2","rts_rr1","rts_rr2","tranclass","bl_rec","sc_hi","gcs_v_1_class","gcs_m_1_class","gcs_e_1_class","gcs_v_2_class","gcs_m_2_class","gcs_e_2_class", "spO2_1_wO2","spO2_1_woO2","spO2_2_wO2","spO2_2_woO2", "niss", "age", "sex", "age", "ot_1", "moi", "tran", "died","spO2_1_cat","spO2_2_cat" )
+# 
+# #make 2 factor
+# predictors$bl_rec <- as.factor(predictors$bl_rec)
+# predictors$sc_hi <- as.factor(predictors$sc_hi)
+# predictors$sex <- as.factor(predictors$sex)
+# predictors$tran <- as.factor(predictors$tran)
+# predictors$tranclass <- as.factor(predictors$tranclass)
+# predictors$ot_1 <- as.factor(predictors$ot_1)
+# predictors$moi <- as.factor(predictors$moi)
+# predictors$tran <- as.factor(predictors$tran)
+# predictors$died <- as.factor(predictors$died)
+# 
+# #make integer
+# predictors$rts_sbp1 <- as.integer(predictors$rts_sbp1)
+# predictors$rts_sbp2 <- as.integer(predictors$rts_sbp2)
+# predictors$rts_rr1 <- as.integer(predictors$rts_rr1)
+# predictors$rts_rr2 <- as.integer(predictors$rts_rr2)
+# predictors$gcs_v_1_class <- as.integer(predictors$gcs_v_1_class)
+# predictors$gcs_m_1_class <- as.integer(predictors$gcs_m_1_class)
+# predictors$gcs_e_1_class <- as.integer(predictors$gcs_e_1_class)
+# predictors$gcs_v_2_class <- as.integer(predictors$gcs_v_2_class)
+# predictors$gcs_m_2_class <- as.integer(predictors$gcs_m_2_class)
+# predictors$gcs_e_2_class <- as.integer(predictors$gcs_e_2_class)
+
+treated_icu=data.frame(treated_icu)
+
+fitval=glm.fit$fitted.values
+
+#lines(treated_icu, glm.fit$fitted.values)
+roc(predictors, glm.fit$fitted.values, plot=TRUE)
